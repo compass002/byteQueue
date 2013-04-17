@@ -5,7 +5,7 @@ using namespace std;
 //tail_index
 //size
 //(expand = 32)
-//next_break_index
+//next_block_index
 //datas
 typedef unsigned char  Q;
 
@@ -21,9 +21,9 @@ int get_memory_index()
 		if(data[i] == '\0')
 		{
 			bool continuous = true;
-			if(i + 32 < 2048)
+			if(i + (32+4) < 2048)
 			{
-				for( int j = 1; j != 32; j ++ )
+				for( int j = 1; j != (32+4); j ++ )
 				{// check if there is 32 continuous space
 					if(data[i+j] != '\0')
 					{// not continuous
@@ -50,10 +50,10 @@ Q * create_queue()
 	int index = get_memory_index();
 	if( index != -1 )
 	{// there are available space
-		data[index] = '0'+index;//head_index
-		data[index + 1] = '0';//tail_index
+		data[index] = '0' + index;//head_index
+		data[index + 1] = '0' + index;//tail_index
 		data[index + 2] = '0';//size
-		data[index + 3] = '\0';//next_break_index
+		data[index + 3] = '\0';//next_block_index
 		//datas
 		for(int i = 0; i != 32; i ++)
 		{
@@ -68,13 +68,28 @@ Q * create_queue()
 	}
 
 } 
+// clear the memory from [begin,end)
+void clear(int begin, int end)
+{
+	int range = end - begin;
+	for(int i = 0; i != range; i ++ )
+	{
+		data[begin + i] = '\0';
+	}
+}
 // Destroy an earlier created byte queue. 
 void destroy_queue(Q * q)
 {
 	if(q != 0)
 	{
 		int head_index = *q - '0';
-		int next = data[head_index + ]
+		int next = data[head_index + 3];
+		if(next != '\0')
+		{// there are other blocks
+
+		}else
+		{// only one block
+		}
 	}else
 	{
 		// error
