@@ -84,11 +84,12 @@ void destroy_queue(Q * q)
 	{
 		int head_index = *q - '0';
 		int next = data[head_index + 3];
-		if(next != '\0')
-		{// there are other blocks
-
-		}else
-		{// only one block
+		clear(head_index, head_index+4+32);
+		while(next != '\0')
+		{
+			int temp_index = next;
+			next = data[temp_index+3];
+			clear(temp_index, temp_index+4+32);
 		}
 	}else
 	{
