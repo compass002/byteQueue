@@ -1,12 +1,27 @@
 #include <iostream>
 using namespace std;
 
-//head_index
-//tail_index
-//size
-//blocks
+//head_index_0
+//head_index_1
+//head_index_2
+//head_index_3
+//tail_index_0
+//tail_index_1
+//tail_index_2
+//tail_index_3
+//size_0
+//size_1
+//size_2
+//size_3
+//blocks_0
+//blocks_1
+//blocks_2
+//blocks_3
 //(expand = 32)
-//next_block_index
+//next_block_index_0
+//next_block_index_1
+//next_block_index_2
+//next_block_index_3
 //datas
 typedef unsigned char  Q;
 
