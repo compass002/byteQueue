@@ -115,9 +115,18 @@ void enqueue_byte(Q * q, unsigned char b)
 		{
 			int new_index = get_memory_index();
 			if( new_index != -1 )
-			{
-				data[new_index] = head_index;
-				data[new_index+1] = data[head_index+1];
+			{// there are available space
+				data[new_index] = *q;//head_index
+				data[new_index + 1] = *(q+1);//tail_index
+				data[new_index + 2] = *(q+2)+1;//size
+				data[new_index + 3] = *(q+3)+1;//blocks
+				data[new_index + 4] = '\0';//next_block_index
+				//datas
+				for(int i = 0; i != 32-5; i ++)
+				{
+					// mark the space
+					data[new_index + 5 + i] = '.';
+				}
 			}else
 			{// fail
 			}
