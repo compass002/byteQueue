@@ -15,22 +15,25 @@ unsigned char data[2048] = {'\0'};
 // search for availavle space
 int get_memory_index()
 {
-	bool continuous = false;
-	for(int i = 0; i != 2048;)
+	for(int i = 0; i != 2048; i ++)
 	{
 		if(data[i] == '\0')
 		{
-			continuous = true;
-			if(i + 32 != 2048)
+			bool continuous = true;
+			if(i + 32 < 2048)
 			{
 				for( int j = 1; j != 32; j ++ )
-				{
+				{// check if there is 32 continuous space
 					if(data[i+j] != '\0')
-					{
+					{// not continuous
 						continuous = false;
 						i = i+j;
 						break;
 					}
+				}
+				if(continuous == true)
+				{
+					return i;
 				}
 			}
 		}
