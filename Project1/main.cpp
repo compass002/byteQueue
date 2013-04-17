@@ -1,12 +1,12 @@
 #include <iostream>
 using namespace std;
 
-//head
-//tail
+//head_index
+//tail_index
 //size
 //(expand = 32)
-//next_break
-//data
+//next_break_index
+//datas
 typedef unsigned char * Q;
 
 // the given memory
@@ -50,10 +50,10 @@ Q * create_queue()
 	int index = get_memory_index();
 	if( index != -1 )
 	{// there are available space
-		//data[index] = '\0';//head
-		//data[index + 1] = '\0';//tail
-		data[index + 2] = 0;//size
-		//data[index + 3] = '\0';//next_break
+		data[index] = '0';//head_index
+		data[index + 1] = '0';//tail_index
+		data[index + 2] = '0';//size
+		data[index + 3] = '\0';//next_break_index
 		//datas
 		for(int i = 0; i != 32; i ++)
 		{
@@ -71,7 +71,13 @@ Q * create_queue()
 // Destroy an earlier created byte queue. 
 void destroy_queue(Q * q)
 {
-
+	if(q != 0)
+	{
+		int next = 
+	}else
+	{
+		// error
+	}
 }
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
