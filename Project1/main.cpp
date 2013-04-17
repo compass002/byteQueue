@@ -7,7 +7,7 @@ using namespace std;
 //(expand = 32)
 //next_break_index
 //datas
-typedef unsigned char * Q;
+typedef unsigned char  Q;
 
 // the given memory
 unsigned char data[2048] = {'\0'};
@@ -50,7 +50,7 @@ Q * create_queue()
 	int index = get_memory_index();
 	if( index != -1 )
 	{// there are available space
-		data[index] = '0';//head_index
+		data[index] = '0'+index;//head_index
 		data[index + 1] = '0';//tail_index
 		data[index + 2] = '0';//size
 		data[index + 3] = '\0';//next_break_index
@@ -60,7 +60,7 @@ Q * create_queue()
 			// mark the space
 			data[index + 4 + i] = '.';
 		}
-		Q pHead = &data[index];
+		unsigned char *pHead = &data[index];
 		return pHead;
 	}else
 	{
@@ -73,7 +73,8 @@ void destroy_queue(Q * q)
 {
 	if(q != 0)
 	{
-		int next = 
+		int head_index = *q - '0';
+		int next = data[head_index + ]
 	}else
 	{
 		// error
