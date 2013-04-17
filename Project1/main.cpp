@@ -7,11 +7,17 @@ struct Node
 
 struct Q
 {
-	unsigned char *mBegin;
-	unsigned char *mEnd;
+	static unsigned int queueID;
+	static Node indexArray[2048];
+
+	unsigned int begin;
+	unsigned int end;
     int size;
 };
+unsigned int Q::queueID = 0;// set 0 as default, means on queue created
+Node Q::indexArray[2048] = {};
 
+unsigned char data[2048];// the given memory
 // Creates a FIFO byte queue, returning a handle to it. 
 Q * create_queue()
 {
