@@ -1,27 +1,35 @@
-
-struct Node
-{
-	unsigned int queueID;
-	unsigned int next;
-};
 struct Q
 {
-	unsigned int begin;
-	unsigned int end;
-    int size;
+	unsigned char *begin;
+	unsigned char *end;
+    unsigned char *size;
+	unsigned char *capacity;
+	const int EXPAND = 4;
 };
 
-unsigned int numberOfQueues;
-Node indexArray[2048];
-unsigned char data[2048];// the given memory
+// the given memory
+unsigned char data[2048];
+
+// search for availavle space
+int getSpaceIndex()
+{
+
+}
+
 // Creates a FIFO byte queue, returning a handle to it. 
 Q * create_queue()
 {
 	
 } 
 // Destroy an earlier created byte queue. 
-void destroy_queue(Q * q); 
+void destroy_queue(Q * q)
+{
+
+}
 // Adds a new byte to a queue. 
-void enqueue_byte(Q * q, unsigned char b); 
+void enqueue_byte(Q * q, unsigned char b)
+{
+
+}
 // Pops the next byte off the FIFO queue 
 unsigned char dequeue_byte(Q * q); 
