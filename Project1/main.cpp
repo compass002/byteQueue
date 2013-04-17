@@ -108,7 +108,7 @@ void enqueue_byte(Q * q, unsigned char b)
 		int capacity = blocks * 32;
 		int size = data[head_index + 2];
 		int free_space = capacity - size;
-		if( free_space >= 0 )
+		if( free_space <= 0 )
 		{// space is enough
 
 		}else
@@ -116,7 +116,8 @@ void enqueue_byte(Q * q, unsigned char b)
 			int new_index = get_memory_index();
 			if( new_index != -1 )
 			{
-
+				data[new_index] = head_index;
+				data[new_index+1] = data[head_index+1];
 			}else
 			{// fail
 			}
