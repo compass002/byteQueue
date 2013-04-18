@@ -1,6 +1,35 @@
 #include <iostream>
 using namespace std;
 
+//unsigned char data[2048]
+//=============================================================
+//                     THE MEMORY BUFFER
+//=============================================================
+//          district that store heads of each queues
+//          the heads store essential informations
+//=============================================================
+//          district that store datas of each queue
+//=============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //=======================================
 //design for each block
 //=======================================
