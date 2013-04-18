@@ -8,15 +8,15 @@ using namespace std;
 //=============================================================
 //          district that store heads of each queues
 //          the heads store essential informations
-//( let's set the maximum number of heads to be 32,
+//( let's set the maximum number of heads to be 20,
 //( so that this distric takes
-//( 448 bytes
+//( 320 bytes
 //=============================================================
 //          district that store datas of each queue
-//( each block consume 32 bytes
-//( this district can hold 50 blocks
+//( each block consume 44 bytes
+//( this district can hold 39 blocks
 //( up to 
-//( 1600 bytes
+//( 1728 bytes
 //=============================================================
 //*************************************************************
 //*************************************************************
@@ -26,7 +26,7 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                      DESIGN OF HEAD
-//14 bytes
+//16 bytes
 //=============================================================
 //=============================================================
 //mark the begin
@@ -68,7 +68,7 @@ using namespace std;
 //( length_2
 //( length_3
 //( .......................
-//( let's set the block initial length to 32
+//( let's set the block initial length to 44
 //=============================================================
 //*************************************************************
 //*************************************************************
@@ -78,9 +78,9 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                     DESIGN OF BLOCK
-//32 bytes
+//44 bytes
 //4 bytes for manage informations
-//28 bytes for datas
+//40 bytes for datas
 //=============================================================
 //point to the index of next block first element address
 //next_0
