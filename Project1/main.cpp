@@ -4,8 +4,9 @@ using namespace std;
 //=======================================
 //design for each block
 //=======================================
-//mark if this block is the first block
+//mark if this block is the first or the last block
 //is_this_first_0
+//is_this_last_0
 //point to the previous block first element
 //prev_0
 //prev_1
@@ -16,7 +17,7 @@ using namespace std;
 //next_1
 //next_2
 //next_3
-//block length
+//block length (a constant value)
 //length_0
 //length_1
 //length_2
