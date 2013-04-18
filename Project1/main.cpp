@@ -30,31 +30,29 @@ using namespace std;
 
 
 
-//=======================================
+//=============================================================
 //design for each block
-//=======================================
-//mark if this block is the first or the last block
-//is_this_first_0
-//is_this_last_0
-//point to the previous block first element
-//prev_0
-//prev_1
-//prev_2
-//prev_3
-//point to the next block first element
+//=============================================================
+//mark the begin
+//B
+//G
+//point to the index of next block first element address
 //next_0
 //next_1
 //next_2
 //next_3
-//block length (a constant value)
-//length_0
-//length_1
-//length_2
-//length_3
+//=============================================================
 //remain datas
 //.......
 //data
 //.......
+//=============================================================
+//mark the end
+//E
+//D
+//=============================================================
+
+
 
 //=======================================
 //design for the data of first block
@@ -80,6 +78,17 @@ using namespace std;
 //next_block_index_1
 //next_block_index_2
 //next_block_index_3
+//block length (a constant value)
+//at the end of the block as a mark
+//length_0
+//length_1
+//length_2
+//length_3
+//queue ID, marked to seperate data of each queues
+//id_0
+//id_1
+//id_2
+//id_3
 //datas
 typedef unsigned char  Q;
 
