@@ -51,6 +51,10 @@ using namespace std;
 //last_index_2
 //last_index_3
 //=============================================================
+//iterator index which point to the tail in the block
+//iter_0
+//iter_1
+//=============================================================
 //( size and capacity, 
 //( if not not necessary, 
 //( do not design this part
@@ -75,12 +79,8 @@ using namespace std;
 //=============================================================
 //                     DESIGN OF BLOCK
 //32 bytes
-//12 bytes for manage informations
-//20 bytes for datas
-//=============================================================
-//mark the begin
-//B
-//G
+//4 bytes for manage informations
+//28 bytes for datas
 //=============================================================
 //point to the index of next block first element address
 //next_0
@@ -88,23 +88,11 @@ using namespace std;
 //next_2
 //next_3
 //=============================================================
-//iterator index which point to the tail
-//iter_0
-//iter_1
-//iter_2
-//iter_3
-//only useful when the block is the last one
-//if not, set to null ('\0')
-//=============================================================
 //remain datas
 //.......
 //datas
 //.......
 //not been used space will be marked as '\0'
-//=============================================================
-//mark the end
-//E
-//D
 //=============================================================
 
 
