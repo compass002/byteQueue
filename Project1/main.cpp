@@ -1,6 +1,34 @@
 #include <iostream>
 using namespace std;
 
+//=======================================
+//design for each block
+//=======================================
+//mark if this block is the first block
+//is_this_first_0
+//point to the previous block first element
+//prev_0
+//prev_1
+//prev_2
+//prev_3
+//point to the next block first element
+//next_0
+//next_1
+//next_2
+//next_3
+//block length
+//length_0
+//length_1
+//length_2
+//length_3
+//remain datas
+//.......
+//data
+//.......
+
+//=======================================
+//design for the data of first block
+//=======================================
 //head_index_0
 //head_index_1
 //head_index_2
