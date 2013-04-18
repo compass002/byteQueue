@@ -109,9 +109,27 @@ unsigned char data[2048] = {'\0'};
 int get_continuous_index(int begin, int end, int length)
 {
 	int range = end - begin;
-	for(int i = 0; i != range; i ++)
+	if(range <= length)
 	{
-		data[begin+i]
+		cerr<<"\nerror: length exceed the range.\n";
+		return -1;
+	}else
+	{
+		int count = 0;
+		for(int i = 0; i != range; i ++)
+		{
+			if(data[begin+i] == '\0')
+			{
+				count ++;
+			}else
+			{
+				count = 0;
+			}
+			if(count == length)
+			{
+				return begin+i-count;
+			}
+		}
 	}
 }
 
@@ -158,8 +176,8 @@ int main()
 	printf("%d", dequeue_byte(q1)); 
 	printf("%d\n", dequeue_byte(q1)); 
 	destroy_queue(q1); 
-	//should be:
- 	//0 1 2 5 3 4 6 
+	// should be:
+ 	// 0 1 2 5 3 4 6 
 	//===================================
 	system("pause");
 	return 0;
