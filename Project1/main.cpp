@@ -4,6 +4,7 @@ using namespace std;
 //unsigned char data[2048]
 //=============================================================
 //                     THE MEMORY BUFFER
+//2048 bytes
 //=============================================================
 //          district that store heads of each queues
 //          the heads store essential informations
@@ -67,8 +68,8 @@ using namespace std;
 //=============================================================
 //                     DESIGN OF BLOCK
 //32 bytes
-//8 bytes for manage informations
-//24 bytes for datas
+//12 bytes for manage informations
+//20 bytes for datas
 //=============================================================
 //mark the begin
 //B
@@ -79,6 +80,12 @@ using namespace std;
 //next_1
 //next_2
 //next_3
+//=============================================================
+//iterator index which point to the tail
+//iter_0
+//iter_1
+//iter_2
+//iter_3
 //=============================================================
 //remain datas
 //.......
