@@ -8,8 +8,15 @@ using namespace std;
 //=============================================================
 //          district that store heads of each queues
 //          the heads store essential informations
+//( let's set the maximum number of heads to be 32,
+//( so that this distric takes
+//( 448 bytes
 //=============================================================
 //          district that store datas of each queue
+//( each block consume 32 bytes
+//( this district can hold 50 blocks
+//( up to 
+//( 1600 bytes
 //=============================================================
 //*************************************************************
 //*************************************************************
@@ -86,6 +93,8 @@ using namespace std;
 //iter_1
 //iter_2
 //iter_3
+//only useful when the block is the last one
+//if not, set to null ('\0')
 //=============================================================
 //remain datas
 //.......
