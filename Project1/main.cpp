@@ -50,38 +50,39 @@ using namespace std;
 //=============================================================
 //                      DESIGN OF HEAD
 //=============================================================
-//queue ID, marked to seperate data of each queues
+//queue ID, marked to seperate each queues
 //id_0
 //id_1
 //id_2
 //id_3
-//head_index_0
-//head_index_1
-//head_index_2
-//head_index_3
-//tail_index_0
-//tail_index_1
-//tail_index_2
-//tail_index_3
-//size_0
-//size_1
-//size_2
-//size_3
-//blocks_0
-//blocks_1
-//blocks_2
-//blocks_3
-//(expand = 32)
-//next_block_index_0
-//next_block_index_1
-//next_block_index_2
-//next_block_index_3
-//block length (a constant value)
-//at the end of the block as a mark
+//=============================================================
+//first block index
+//fist_index_0
+//fist_index_1
+//fist_index_2
+//fist_index_3
+//=============================================================
+//last block index
+//last_index_0
+//last_index_1
+//last_index_2
+//last_index_3
+//=============================================================
+//( size and capacity, 
+//( if not not necessary, 
+//( do not design this part
+//=============================================================
+//block initial length (a constant value)
+//the length when expand the queue to add a new block
+//however, while pop the head element, 
+//the length of the first block will decrease
 //length_0
 //length_1
 //length_2
 //length_3
+//=============================================================
+
+
 
 //datas
 typedef unsigned char  Q;
