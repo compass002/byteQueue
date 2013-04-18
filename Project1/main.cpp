@@ -18,6 +18,7 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                      DESIGN OF HEAD
+//14 bytes
 //=============================================================
 //=============================================================
 //mark the begin
@@ -46,14 +47,16 @@ using namespace std;
 //( if not not necessary, 
 //( do not design this part
 //=============================================================
-//block initial length (a constant value)
-//the length when expand the queue to add a new block
-//however, while pop the head element, 
-//the length of the first block will decrease
-//length_0
-//length_1
-//length_2
-//length_3
+//( block initial length (a constant value)
+//( the length when expand the queue to add a new block
+//( however, while pop the head element, 
+//( the length of the first block will decrease
+//( length_0
+//( length_1
+//( length_2
+//( length_3
+//( .......................
+//( let's set the block initial length to 32
 //=============================================================
 //*************************************************************
 //*************************************************************
@@ -63,6 +66,9 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                     DESIGN OF BLOCK
+//32 bytes
+//8 bytes for manage informations
+//24 bytes for datas
 //=============================================================
 //mark the begin
 //B
