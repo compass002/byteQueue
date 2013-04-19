@@ -139,8 +139,17 @@ int get_continuous_index(int begin, int end, int length)
 		}
 	}
 }
-
+// initial a head by address
+void initial_head(int address)
+{
+	int iter = 0;
+	data[address + iter] = 'H';
+	iter ++;
+	data[address + iter] = 'D';
+	iter ++;
+}
 // Creates a FIFO byte queue, returning a handle to it. 
+// if fail to create a queue, return 0
 Q * create_queue()
 {
 	// search head district
@@ -152,6 +161,7 @@ Q * create_queue()
 		if(first_block != -1)
 		{// able to initial a queue
 			// initial the queue
+			// initial the head first
 
 			// after initialization, return the head address
 
