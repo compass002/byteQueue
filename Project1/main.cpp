@@ -82,7 +82,7 @@ using namespace std;
 // .......
 // datas
 // .......
-// not been used space will be marked as '\0'
+// not been used space will be marked as 'B'
 //=============================================================
 
 
@@ -165,8 +165,8 @@ Q * create_queue()
 			{
 				data[head + i + 4] = address[i];
 			}
-			data[head + 8] = 0;
-			data[head + 9] = 0;
+			data[head + 8] = '-';
+			data[head + 9] = '1';
 			// mark the block
 			for(int i = 0; i != 44; i ++)
 			{
