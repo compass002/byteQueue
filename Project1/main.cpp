@@ -219,8 +219,17 @@ void destroy_queue(Q * q)
 	unsigned char address_array[4];
 	for(int i = 0; i != 4; i ++)
 	{
-
+		address_array[i] = *(q+i);
 	}
+	int address = to_number(address_array);
+	// get the next block's address
+	unsigned char address_next_array[4];
+	for(int i = 0; i != 4; i ++)
+	{
+		address_next_array[i] = data[address + i]; 
+	}
+	int address_next = to_number(address_next_array);
+	if(
 }
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
