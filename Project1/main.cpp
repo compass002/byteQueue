@@ -103,8 +103,8 @@ typedef unsigned char  Q;
 // the given memory
 unsigned char data[2048] = {'\0'};
 
-// search continuous memory space in a give range [begin,end)
-// should have "length" continous bytes
+// search continuous memory space in a given range [begin,end)
+// should have "length" continuous bytes
 // return the address or -1 if fail
 int get_continuous_index(int begin, int end, int length)
 {
@@ -136,10 +136,26 @@ int get_continuous_index(int begin, int end, int length)
 // Creates a FIFO byte queue, returning a handle to it. 
 Q * create_queue()
 {
+	// search head district
+	int head = get_continuous_index(0,320,16);
+	if(head != -1)
+	{
+		// search block district
+		int first_block = get_continuous_index(320,2048,44);
+		if(first_block != -1)
+		{// able to initial a queue
+			// initial the queue
+
+			// after initialization, return the head address
+
+		}
+	}
+	return 0;
 } 
 // clear the memory from [begin,end)
 void clear(int begin, int end)
 {
+
 }
 // Destroy an earlier created byte queue. 
 void destroy_queue(Q * q)
