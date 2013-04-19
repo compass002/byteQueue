@@ -8,15 +8,15 @@ using namespace std;
 //=============================================================
 //          district that store heads of each queues
 //          the heads store essential informations
-// ( let's set the maximum number of heads to be 24,
+// ( let's set the maximum number of heads to be 20,
 // ( so that this distric takes
-// ( 288 bytes
+// ( 200 bytes
 //=============================================================
 //          district that store datas of each queue
 // ( each block consume 44 bytes
-// ( this district can hold 40 blocks
+// ( this district can hold 42 blocks
 // ( up to 
-// ( 1760 bytes
+// ( 1848 bytes
 //=============================================================
 //*************************************************************
 //*************************************************************
@@ -26,12 +26,8 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                      DESIGN OF HEAD
-// 12 bytes
+// 10 bytes
 //=============================================================
-//=============================================================
-// queue ID, marked to seperate each queues
-// id_0
-// id_1
 //=============================================================
 // first block index
 // fist_index_0
@@ -146,8 +142,9 @@ void initial_head(int address)
 // if fail to create a queue, return 0
 Q * create_queue()
 {
+
 	// search head district
-	int head = get_continuous_index(0,320,16);
+	int head = get_continuous_index(0,320,10);
 	if(head != -1)
 	{
 		// search block district
