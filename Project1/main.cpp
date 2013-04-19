@@ -142,6 +142,17 @@ void to_array(int numberA, unsigned char (&numberB)[4])
 	nubmerB[2] = number_ten;
 	numberB[3] = number_one;
 }
+// convert array to number
+int to_number(unsigned char (&numberB)[4], int &numberA)
+{
+	int number_thousand = numberB[0];
+	int number_hundred = numberB[1];
+	int number_ten = numberB[2];
+	int number_one = numberB[3];
+
+	numberA = number_one + number_ten*10 + number_hundred*100 + number_thousand*1000;
+	return numberA;
+}
 // Creates a FIFO byte queue, returning a handle to it. 
 // if fail to create a queue, return 0
 Q * create_queue()
@@ -196,7 +207,8 @@ void clear(int begin, int end)
 // Destroy an earlier created byte queue. 
 void destroy_queue(Q * q)
 {
-
+	// destroy the blocks
+	
 }
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
