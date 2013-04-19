@@ -129,20 +129,22 @@ int get_continuous_index(int begin, int end, int length)
 		}
 	}
 }
-// initial a head by address
-void initial_head(int address)
+// convert a number range 9999 to 0 to a array
+void to_array(int numberA, unsigned char (&numberB)[4])
 {
-	int iter = 0;
-	data[address + iter] = 'H';
-	iter ++;
-	data[address + iter] = 'D';
-	iter ++;
+	int number_thousand = numberA/1000;
+	int number_hundred = numberA/100 - number_thousand*1000;
+	int number_ten = numberA/10 - number_thousand*1000 - number_hundred*100;
+	int number_one = numberA - numberA/10 - number_thousand*1000 - number_hundred*100;
+
+	numberB[0] = number_thousand;
+	numberB[]
+	
 }
 // Creates a FIFO byte queue, returning a handle to it. 
 // if fail to create a queue, return 0
 Q * create_queue()
 {
-
 	// search head district
 	int head = get_continuous_index(0,320,10);
 	if(head != -1)
@@ -151,9 +153,16 @@ Q * create_queue()
 		int first_block = get_continuous_index(320,2048,44);
 		if(first_block != -1)
 		{// able to initial a queue
-			// initial the queue
-			// initial the head first
-
+			// initial the head
+			for(int i = 0; i != 4; i ++)
+			{
+				data[head + i] = first_block + i;
+			}
+			for(int i = 4; i != 8; i ++)
+			{
+				data[head + i] = first_block + i - 4;
+			}
+			data[head]
 			// after initialization, return the head address
 
 		}
