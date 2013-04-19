@@ -212,6 +212,27 @@ void clear(int begin, int end)
 		}
 	}
 }
+// destroy blocks
+void destroy_blocks(int address)
+{
+	// get the next block's address
+	bool is_next_exist = true;
+	unsigned char address_next_array[4];
+	for(int i = 0; i != 4; i ++)
+	{
+		if(data[address + i] == 'B')
+		{// next block not exist
+			is_next_exist = false;
+		}
+		address_next_array[i] = data[address + i]; 
+	}
+	if(is_next_exist)
+	{// if next exist go on to destory next blocks
+		int address_next = to_number(address_next_array);
+	}else
+	{
+	}
+}
 // Destroy an earlier created byte queue. 
 void destroy_queue(Q * q)
 {
@@ -234,7 +255,7 @@ void destroy_queue(Q * q)
 		address_next_array[i] = data[address + i]; 
 	}
 	if(is_next_exist)
-	{
+	{// if next exist go on to destory next blocks
 		int address_next = to_number(address_next_array);
 	}else
 	{
