@@ -208,8 +208,16 @@ void clear(int begin, int end)
 	{
 		for(int i = 0; i != range; i ++)
 		{
-			data[begin+i] == '\0';
+			data[begin+i] = '\0';
 		}
+	}
+}
+// clear the memory with the given length
+void clear(Q *q, int length)
+{
+	for(int i = 0; i != length; i ++)
+	{
+		*(q+i) = '\0';
 	}
 }
 // destroy blocks
@@ -245,6 +253,8 @@ void destroy_queue(Q * q)
 	}
 	int address = to_number(address_array);
 	destroy_blocks(address);
+	// destroy the head
+
 	
 }
 // Adds a new byte to a queue. 
