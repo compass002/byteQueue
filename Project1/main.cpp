@@ -138,8 +138,9 @@ void to_array(int numberA, unsigned char (&numberB)[4])
 	int number_one = numberA - numberA/10 - number_thousand*1000 - number_hundred*100;
 
 	numberB[0] = number_thousand;
-	numberB[]
-	
+	numberB[1] = number_hundred;
+	nubmerB[2] = number_ten;
+	numberB[3] = number_one;
 }
 // Creates a FIFO byte queue, returning a handle to it. 
 // if fail to create a queue, return 0
@@ -154,17 +155,24 @@ Q * create_queue()
 		if(first_block != -1)
 		{// able to initial a queue
 			// initial the head
+			unsigned char address[4];
+			to_array(first_block, address);
 			for(int i = 0; i != 4; i ++)
 			{
-				data[head + i] = first_block + i;
+				data[head + i] = address[i];
 			}
-			for(int i = 4; i != 8; i ++)
+			for(int i = 0; i != 4; i ++)
 			{
-				data[head + i] = first_block + i - 4;
+				data[head + i + 4] = address[i];
 			}
-			data[head]
+			data[head + 8] = 0;
+			data[head + 9] = 0;
+			// mark the block
+			for(int i = 0; i != 44; i ++)
+			{
+				data[first_block + i] = 'B';
+			}
 			// after initialization, return the head address
-
 		}
 	}
 	return 0;
