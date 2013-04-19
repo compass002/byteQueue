@@ -254,12 +254,23 @@ void destroy_queue(Q * q)
 	int address = to_number(address_array);
 	destroy_blocks(address);
 	// destroy the head
-
-	
+	clear(q,10);
 }
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
 {
+	//check if the block is full
+	unsigned char first_number = *(q + 8);
+	unsigned char second_number = *(q + 9);
+	int iter = (first_nubmer - '0')*10 + (second_number - '0');
+	if(iter == 40)
+	{// full
+		// expand a new block
+		// check if there are space available for expand
+	}else
+	{
+		// add the element to the tail
+	}
 }
 // Pops the next byte off the FIFO queue 
 unsigned char dequeue_byte(Q * q)
