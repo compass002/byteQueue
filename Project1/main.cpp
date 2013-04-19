@@ -143,15 +143,21 @@ void to_array(int numberA, unsigned char (&numberB)[4])
 	numberB[3] = number_one;
 }
 // convert array to number
-int to_number(unsigned char (&numberB)[4], int &numberA)
+int to_number(unsigned char (&numberB)[4])
 {
 	int number_thousand = numberB[0];
 	int number_hundred = numberB[1];
 	int number_ten = numberB[2];
 	int number_one = numberB[3];
 
-	numberA = number_one + number_ten*10 + number_hundred*100 + number_thousand*1000;
-	return numberA;
+	int result = number_one + number_ten*10 + number_hundred*100 + number_thousand*1000;
+	return result;
+}
+int to_number(unsigned char (&numberB)[4], int &numberA)
+{
+	int result = to_number(numberB);
+	numberA = result;
+	return result;
 }
 // Creates a FIFO byte queue, returning a handle to it. 
 // if fail to create a queue, return 0
@@ -184,6 +190,8 @@ Q * create_queue()
 				data[first_block + i] = 'B';
 			}
 			// after initialization, return the head address
+			unsigned char *pHead = &data[head];
+			return pHead;
 		}
 	}
 	return 0;
@@ -208,7 +216,11 @@ void clear(int begin, int end)
 void destroy_queue(Q * q)
 {
 	// destroy the blocks
-	
+	unsigned char address_array[4];
+	for(int i = 0; i != 4; i ++)
+	{
+
+	}
 }
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
