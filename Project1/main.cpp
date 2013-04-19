@@ -137,18 +137,18 @@ void to_array(int numberA, unsigned char (&numberB)[4])
 	int number_ten = numberA/10 - number_thousand*1000 - number_hundred*100;
 	int number_one = numberA - numberA/10 - number_thousand*1000 - number_hundred*100;
 
-	numberB[0] = number_thousand;
-	numberB[1] = number_hundred;
-	nubmerB[2] = number_ten;
-	numberB[3] = number_one;
+	numberB[0] = number_thousand + '0';
+	numberB[1] = number_hundred + '0';
+	numberB[2] = number_ten + '0';
+	numberB[3] = number_one + '0';
 }
 // convert array to number
 int to_number(unsigned char (&numberB)[4])
 {
-	int number_thousand = numberB[0];
-	int number_hundred = numberB[1];
-	int number_ten = numberB[2];
-	int number_one = numberB[3];
+	int number_thousand = numberB[0] - '0';
+	int number_hundred = numberB[1] - '0';
+	int number_ten = numberB[2] - '0';
+	int number_one = numberB[3] - '0';
 
 	int result = number_one + number_ten*10 + number_hundred*100 + number_thousand*1000;
 	return result;
