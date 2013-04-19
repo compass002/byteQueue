@@ -8,15 +8,15 @@ using namespace std;
 //=============================================================
 //          district that store heads of each queues
 //          the heads store essential informations
-// ( let's set the maximum number of heads to be 20,
+// ( let's set the maximum number of heads to be 24,
 // ( so that this distric takes
-// ( 320 bytes
+// ( 288 bytes
 //=============================================================
 //          district that store datas of each queue
 // ( each block consume 44 bytes
-// ( this district can hold 39 blocks
+// ( this district can hold 40 blocks
 // ( up to 
-// ( 1728 bytes
+// ( 1760 bytes
 //=============================================================
 //*************************************************************
 //*************************************************************
@@ -26,18 +26,12 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                      DESIGN OF HEAD
-// 16 bytes
+// 12 bytes
 //=============================================================
-//=============================================================
-// mark the begin
-// H
-// D
 //=============================================================
 // queue ID, marked to seperate each queues
 // id_0
 // id_1
-// id_2
-// id_3
 //=============================================================
 // first block index
 // fist_index_0
