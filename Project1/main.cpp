@@ -109,25 +109,32 @@ unsigned char data[2048] = {'\0'};
 int get_continuous_index(int begin, int end, int length)
 {
 	int range = end - begin;
-	if(range <= length)
+	if( range <= 0 )
 	{
-		cerr<<"\nerror: length exceed the range.\n";
+		cerr<<"\nerror: range should bigger than 0.\n";
 		return -1;
 	}else
 	{
-		int count = 0;
-		for(int i = 0; i != range; i ++)
+		if(range <= length)
 		{
-			if(data[begin+i] == '\0')
+			cerr<<"\nerror: length exceed the range.\n";
+			return -1;
+		}else
+		{
+			int count = 0;
+			for(int i = 0; i != range; i ++)
 			{
-				count ++;
-			}else
-			{
-				count = 0;
-			}
-			if(count == length)
-			{
-				return begin+i-count;
+				if(data[begin+i] == '\0')
+				{
+					count ++;
+				}else
+				{
+					count = 0;
+				}
+				if(count == length)
+				{
+					return begin+i-count;
+				}
 			}
 		}
 	}
@@ -155,7 +162,18 @@ Q * create_queue()
 // clear the memory from [begin,end)
 void clear(int begin, int end)
 {
-
+	int range = end - begin;
+	if( range <= 0 )
+	{
+		cerr<<"\nerror: range should bigger than 0.\n";
+		return;
+	}else
+	{
+		for(int i = 0; i != range; i ++)
+		{
+			data[begin+i] == '\0';
+		}
+	}
 }
 // Destroy an earlier created byte queue. 
 void destroy_queue(Q * q)
