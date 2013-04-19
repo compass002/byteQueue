@@ -223,13 +223,23 @@ void destroy_queue(Q * q)
 	}
 	int address = to_number(address_array);
 	// get the next block's address
+	bool is_next_exist = true;
 	unsigned char address_next_array[4];
 	for(int i = 0; i != 4; i ++)
 	{
+		if(data[address + i] == 'B')
+		{// next block not exist
+			is_next_exist = false;
+		}
 		address_next_array[i] = data[address + i]; 
 	}
-	int address_next = to_number(address_next_array);
-	if(
+	if(is_next_exist)
+	{
+		int address_next = to_number(address_next_array);
+	}else
+	{
+	}
+	
 }
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
