@@ -83,6 +83,8 @@ const int ADDRESS_LENGTH = 4;
 const int ONE_LENGTH = 1;
 const int HEAD_LENGTH = 11;// 4/4/1/1/1
 const int BLOCK_LENGTH = 45;// 4/40/1
+const int THE_HEAD_ITER = 8;
+const int THE_TAIL_ITER = 9;
 typedef unsigned char  Q;
 // the given memory
 unsigned char data[2048] = {'\0'};
