@@ -124,7 +124,7 @@ int get_continuous_index(int begin, int end, int length)
 				}
 				if(count == length)
 				{
-					return begin+i-count;
+					return begin+i+1-count;
 				}
 			}
 		}
