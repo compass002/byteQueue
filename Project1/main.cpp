@@ -341,6 +341,16 @@ unsigned char dequeue_byte(Q * q)
 	// destroy this block and update the queue after pop it
 	if(head_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
 	{// the last element
+
+
+		// is there exist next blocks
+		// if not, error
+
+
+
+
+
+
 		// change the next block to be the first block
 		for(int i = 0; i != 4; i ++)
 		{
