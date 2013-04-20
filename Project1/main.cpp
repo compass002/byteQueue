@@ -341,8 +341,10 @@ unsigned char dequeue_byte(Q * q)
 		clear(address, address + BLOCK_LENGTH);
 	}else
 	{// not the last element
+		// release the element
+		data[address + ADDRESS_LENGTH + head_iter] = 255;
 		head_iter ++;
-		*(q+ ADDRESS_LENGTH*2) = head_iter;
+		*(q+ THE_HEAD_ITER) = head_iter;
 	}
 	return result;
 }
@@ -369,7 +371,9 @@ int main()
 	printf("%d\n", dequeue_byte(q1));
 	destroy_queue(q1);
 	// should be:
-	// 0 1 2 5 3 4 6 
+	// 0 1
+	// 2 5
+	// 3 4 6 
 	//===================================
 	system("pause");
 	return 0;
