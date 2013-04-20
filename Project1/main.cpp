@@ -265,8 +265,22 @@ void enqueue_byte(Q * q, unsigned char b)
 	int iter = (first_nubmer - '0')*10 + (second_number - '0');
 	if(iter == 40)
 	{// full
-		// expand a new block
 		// check if there are space available for expand
+		int index = get_continuous_index(200,2048,44);
+		if(index == -1)
+		{// no available space
+			// report
+		}else
+		{// expand a new block
+			for(int i = 0; i != 44; i ++)
+			{// mark the new block
+				data[index + i] = 'B';
+			}
+			// add the element to this block
+			data[index + 4] = b;
+			// link the blocks
+
+		}
 	}else
 	{
 		// add the element to the tail
