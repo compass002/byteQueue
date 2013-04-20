@@ -320,9 +320,32 @@ void enqueue_byte(Q * q, unsigned char b)
 // Pops the next byte off the FIFO queue 
 unsigned char dequeue_byte(Q * q)
 {
+	// get the first block address
+	unsigned char first_block_address[4];
+	for(int i = 0; i != 4; i ++)
+	{
+		first_block_address[i] = *(q+i);
+	}
+	int address = to_number(first_block_address);
+	// get the element
+	int iter = *(q+8);
+	unsigned char result = data[address + 4 + iter];
 	// if the head is the last element in current block
 	// destroy this block and update the queue after pop it
-	
+	if(iter == 39)
+	{// the last element
+		// change the next block to be the first block
+		for(int i = 0; i != 4; i ++)
+		{
+			*(q+i) = data[address + i];
+		}
+		// update the iter
+		*(q+8) = 0;
+	}else
+	{// not the last element
+		iter ++;
+		*(q+8) = iter;
+	}
 }
 
 
