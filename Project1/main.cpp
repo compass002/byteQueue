@@ -306,10 +306,18 @@ void enqueue_byte(Q * q, unsigned char b)
 		// get the iter
 		int iter = *(q+8) * 10 + *(q+9);
 		// get the last block address
+		unsigned char last_block_address[4];
 		for(int i = 0; i != 4; i ++)
 		{
-
+			last_block_address[i] = *(q + i + 4);
 		}
+		int address = to_number(last_block_address);
+		// add the element to tail
+		data[address + 4 + iter + 1] = b;
+		// update iter in head
+		iter ++;
+		*(q + 8) = iter/10 - '0';
+		*(q + 9) = iter - (int)(iter/10)*10 - '0';
 	}
 }
 // Pops the next byte off the FIFO queue 
