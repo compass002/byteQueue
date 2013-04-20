@@ -341,11 +341,14 @@ unsigned char dequeue_byte(Q * q)
 		}
 		// update the iter
 		*(q+8) = 0;
+		// release the block
+		clear(address, address + 44);
 	}else
 	{// not the last element
 		iter ++;
 		*(q+8) = iter;
 	}
+	return result;
 }
 
 
