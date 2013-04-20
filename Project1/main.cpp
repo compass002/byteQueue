@@ -8,9 +8,9 @@ using namespace std;
 //=============================================================
 //          district that store heads of each queues
 //          the heads store essential informations
-// ( let's set the maximum number of heads to be 20,
+// ( let's set the maximum number of heads to be 17,
 // ( so that this distric takes
-// ( 200 bytes
+// ( 240 bytes
 //=============================================================
 //          district that store datas of each queue
 // ( each block consume 44 bytes
@@ -26,7 +26,7 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                      DESIGN OF HEAD
-// 10 bytes
+// 11 bytes
 //=============================================================
 //=============================================================
 // first block index
@@ -59,7 +59,9 @@ using namespace std;
 // ( length_2
 // ( length_3
 // ( .......................
-// ( let's set the block initial length to 44
+// ( let's set the block initial length to 45
+//=============================================================
+// 255
 //=============================================================
 //*************************************************************
 //*************************************************************
@@ -69,8 +71,8 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                     DESIGN OF BLOCK
-// 44 bytes
-// 4 bytes for manage informations
+// 45 bytes
+// 5 bytes for manage informations
 // 40 bytes for datas
 //=============================================================
 // point to the index of next block first element address
@@ -84,6 +86,8 @@ using namespace std;
 // datas
 // .......
 // not been used space will be marked as 'B'
+//=============================================================
+//255
 //=============================================================
 
 
