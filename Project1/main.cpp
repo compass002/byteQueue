@@ -193,7 +193,8 @@ Q * create_queue()
 			// after initialization, return the head address
 			Q *pHead = &data[head];
 			return pHead;
-		}
+		}else
+			return 0;
 	}else
 		return 0;
 }

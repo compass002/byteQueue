@@ -1,4 +1,4 @@
-﻿Build started 4/20/2013 3:09:50 PM.
+﻿Build started 4/20/2013 3:11:49 PM.
      1>Project "C:\Programming\CPlusPlus\2013Spring\Project1\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W4 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -7,10 +7,9 @@
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(142): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(143): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(144): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(317): warning C4244: '=' : conversion from 'int' to 'Q', possible loss of data
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(349): warning C4244: '=' : conversion from 'int' to 'Q', possible loss of data
+     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(318): warning C4244: '=' : conversion from 'int' to 'Q', possible loss of data
+     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(350): warning C4244: '=' : conversion from 'int' to 'Q', possible loss of data
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(132): warning C4715: 'get_continuous_index' : not all control paths return a value
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(199): warning C4715: 'create_queue' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.lib" /MACHINE:X86 Debug\main.obj
          Project1.vcxproj -> C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.exe
@@ -18,4 +17,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.96
+Time Elapsed 00:00:02.01
