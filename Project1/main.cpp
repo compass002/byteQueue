@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include <iostream>
 using namespace std;
 
@@ -89,6 +90,11 @@ typedef unsigned char  Q;
 // the given memory
 unsigned char data[2048] = {'\0'};
 
+void on_illegal_operation()
+{
+	cerr<<"error: illegal operation.";
+	throw("error: illegal operation.");
+}
 // search continuous memory space in a given range [begin,end)
 // should have "length" continuous bytes
 // return the address or -1 if fail
@@ -98,12 +104,14 @@ int get_continuous_index(int begin, int end, int length)
 	if( range <= 0 )
 	{
 		cerr<<"\nerror: range should bigger than 0.\n";
+		on_illegal_operation();
 		return -1;
 	}else
 	{
 		if(range <= length)
 		{
 			cerr<<"\nerror: length exceed the range.\n";
+			on_illegal_operation();
 			return -1;
 		}else
 		{
@@ -202,6 +210,7 @@ void clear(int begin, int end)
 	if( range <= 0 )
 	{
 		cerr<<"\nerror: range should bigger than 0.\n";
+		on_illegal_operation();
 		return;
 	}else
 	{
@@ -255,6 +264,11 @@ void destroy_queue(Q * q)
 	// destroy the head
 	clear(q, HEAD_LENGTH);
 }
+void on_out_of_memory()
+{
+	cerr<<"\nerror: not enough memory.\n";
+	throw("\nerror: not enough memory.\n");
+}
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
 {
@@ -267,17 +281,8 @@ void enqueue_byte(Q * q, unsigned char b)
 		if(index == -1)
 		{// no available space
 			// report error
-
-
-
-
-			// add codes here
-
-
-
-
-
-
+			cerr<<"error: there is not enough memory to create a new block.";
+			on_out_of_memory();
 		}else
 		{// expand a new block
 			for(int i = 0; i != BLOCK_LENGTH; i ++)
@@ -341,14 +346,18 @@ unsigned char dequeue_byte(Q * q)
 	// destroy this block and update the queue after pop it
 	if(head_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
 	{// the last element
+		// is there next blocks
+		// get next block address
+		for(int i = 0; i != 4; i ++)
+		{
+			if(data[address + i] == 255)
+			{// next block does not exist
+				
 
 
-		// is there exist next blocks
-		// if not, error
 
-
-
-
+			}// 
+		}
 
 
 		// change the next block to be the first block
