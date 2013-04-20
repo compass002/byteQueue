@@ -134,9 +134,9 @@ int get_continuous_index(int begin, int end, int length)
 void to_array(int numberA, unsigned char (&numberB)[4])
 {
 	int number_thousand = numberA/1000;
-	int number_hundred = numberA/100 - number_thousand*1000;
-	int number_ten = numberA/10 - number_thousand*1000 - number_hundred*100;
-	int number_one = numberA - numberA/10 - number_thousand*1000 - number_hundred*100;
+	int number_hundred = (numberA - number_thousand*1000)/100;
+	int number_ten = (numberA - number_thousand*1000 - number_hundred*100)/10;
+	int number_one = numberA - number_thousand*1000 - number_hundred*100 - number_ten*10;
 
 	numberB[0] = number_thousand + '0';
 	numberB[1] = number_hundred + '0';
@@ -183,8 +183,8 @@ Q * create_queue()
 			{
 				data[head + i + 4] = address[i];
 			}
-			data[head + 8] = '-';
-			data[head + 9] = '1';
+			data[head + 8] = 0;
+			data[head + 9] = 0;
 			// mark the block
 			for(int i = 0; i != 44; i ++)
 			{
