@@ -278,8 +278,27 @@ void enqueue_byte(Q * q, unsigned char b)
 			}
 			// add the element to this block
 			data[index + 4] = b;
+			// update the iter
+			*(q+8) = '0';
+			*(q+9) = '0';
 			// link the blocks
-
+			unsigned char address_array[4];
+			for(int i = 0; i != 4; i ++)
+			{
+				address_array[i] = *(q+i+4);
+			}
+			// get the previous last block's address
+			int address = to_number(address_array);
+			// convert the new block's address to array
+			unsigned char last_block_address[4];
+			to_array(index, last_block_address);
+			// update the previous last block
+			// update the last_block_index in the head
+			for(int i = 0; i != 4; i ++)
+			{
+				data[address + i] = last_block_address[i];
+				(q + i + 4) = last_block_address[i];
+			}
 		}
 	}else
 	{
