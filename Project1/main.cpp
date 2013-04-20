@@ -266,7 +266,18 @@ void enqueue_byte(Q * q, unsigned char b)
 		int index = get_continuous_index(HEAD_DISTRICT_BOUNDARY,THE_END_BOUNDARY,BLOCK_LENGTH);
 		if(index == -1)
 		{// no available space
-			// report
+			// report error
+
+
+
+
+			// add codes here
+
+
+
+
+
+
 		}else
 		{// expand a new block
 			for(int i = 0; i != BLOCK_LENGTH; i ++)
@@ -352,7 +363,12 @@ unsigned char dequeue_byte(Q * q)
 
 int main()
 {
-	Q *q0 = create_queue();
+	Q *q90 = create_queue();
+	for(int i = 0; i != 90; i ++)
+	{
+		enqueue_byte(q90, i);
+	}
+	/*Q *q0 = create_queue();
 	enqueue_byte(q0, 0);
 	enqueue_byte(q0, 1);
 	Q * q1 = create_queue();
@@ -369,11 +385,11 @@ int main()
 	printf("%d", dequeue_byte(q1));
 	printf("%d", dequeue_byte(q1));
 	printf("%d\n", dequeue_byte(q1));
-	destroy_queue(q1);
+	destroy_queue(q1);*/
 	// should be:
 	// 0 1
-	// 2 5
-	// 3 4 6 
+	// 2 5
+	// 3 4 6 
 	//===================================
 	system("pause");
 	return 0;
