@@ -8,15 +8,15 @@ using namespace std;
 //=============================================================
 //          district that store heads of each queues
 //          the heads store essential informations
-// ( let's set the maximum number of heads to be 25,
+// ( let's set the maximum number of heads to be 24,
 // ( so that this distric takes
-// ( 250 bytes
+// ( 264 bytes
 //=============================================================
 //          district that store datas of each queue
-// ( each block consume 44 bytes
-// ( this district can hold 40 blocks
+// ( each block consume 45 bytes
+// ( this district can hold 39 blocks
 // ( up to 
-// ( 1798 bytes
+// ( 1784 bytes
 //=============================================================
 //*************************************************************
 //*************************************************************
@@ -26,7 +26,7 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                      DESIGN OF HEAD
-// 10 bytes
+// 11 bytes
 //=============================================================
 //=============================================================
 // first block index
@@ -46,6 +46,8 @@ using namespace std;
 // iterator index which point to the tail in the last block
 // iter_tail
 //=============================================================
+// 255 mark the end
+//=============================================================
 //*************************************************************
 //*************************************************************
 //*************************************************************
@@ -54,29 +56,32 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                     DESIGN OF BLOCK
-// 44 bytes
-// 4 bytes for manage informations
+// 45 bytes
+// 5 bytes for manage informations
 // 40 bytes for datas
 //=============================================================
 // point to the index of next block first element address
 // next_0
 // next_1
+// next_2
+// next_3
 //=============================================================
 // remain datas
 // .......
 // datas
 // .......
-// not been used space will be marked as 'B'
+// not been used space will be marked as 255
 //=============================================================
-// point to the index of next block first element address
-// next_2
-// next_3
+// 255 mark the end
 //=============================================================
 
 
 
-
-
+const int MARK_AS_USED = 255;
+const int ADDRESS_LENGTH = 4;
+const int ONE_LENGTH = 1;
+const int HEAD_LENGTH = 11;// 4/4/1/1/1
+const int BLOCK_LENGTH = 45;// 4/40/1
 typedef unsigned char  Q;
 // the given memory
 unsigned char data[2048] = {'\0'};
@@ -170,12 +175,13 @@ Q * create_queue()
 			{
 				data[head + i + 4] = address[i];
 			}
-			data[head + 8] = 255;
-			data[head + 9] = 255;
+			data[head + 8] = 0;
+			data[head + 9] = 0;
+			data[head + 10] = 255;
 			// mark the block
-			for(int i = 0; i != 44; i ++)
+			for(int i = 0; i != 45; i ++)
 			{
-				data[first_block + i] = 'B';
+				data[first_block + i] = 255;
 			}
 			// after initialization, return the head address
 			Q *pHead = &data[head];
@@ -217,7 +223,7 @@ void destroy_blocks(int address)
 	unsigned char address_next_array[4];
 	for(int i = 0; i != 4; i ++)
 	{
-		if(data[address + i] == 'B')
+		if(data[address + i] == 255)
 		{// next block not exist
 			is_next_exist = false;
 		}
@@ -229,7 +235,7 @@ void destroy_blocks(int address)
 		destroy_blocks(address_next);
 	}
 	// destroy this block
-	clear(address, address+44);
+	clear(address, address + 45);
 }
 // Destroy an earlier created byte queue. 
 void destroy_queue(Q * q)
@@ -243,15 +249,15 @@ void destroy_queue(Q * q)
 	int address = to_number(address_array);
 	destroy_blocks(address);
 	// destroy the head
-	clear(q,10);
+	clear(q,11);
 }
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
 {
 	//check if the block is full
 	int iter = *(q+9);
-	if(iter == 255)
-		iter = 0;
+	/*if(iter == 255)
+		iter = 0;*/
 	if(iter == 40)
 	{// full
 		// check if there are space available for expand
@@ -261,14 +267,14 @@ void enqueue_byte(Q * q, unsigned char b)
 			// report
 		}else
 		{// expand a new block
-			for(int i = 0; i != 44; i ++)
+			for(int i = 0; i != BLOCK_LENGTH; i ++)
 			{// mark the new block
-				data[index + i] = 'B';
+				data[index + i] = MARK_AS_USED;
 			}
 			// add the element to this block
 			data[index + 4] = b;
 			// update the iter
-			*(q+9) = 255;
+			*(q+9) = 0;
 			// link the blocks
 			unsigned char address_array[4];
 			for(int i = 0; i != 4; i ++)
@@ -293,8 +299,8 @@ void enqueue_byte(Q * q, unsigned char b)
 		// add the element to the tail
 		// get the iter
 		int iter = *(q+9);
-		if(iter == 255)
-			iter = 0;
+		/*if(iter == 255)
+			iter = 0;*/
 		// get the last block address
 		unsigned char last_block_address[4];
 		for(int i = 0; i != 4; i ++)
@@ -321,12 +327,12 @@ unsigned char dequeue_byte(Q * q)
 	int address = to_number(first_block_address);
 	// get the element
 	int iter = *(q+8);
-	if(iter == 255)
-		iter = 0;
+	/*if(iter == 255)
+		iter = 0;*/
 	unsigned char result = data[address + 4 + iter];
 	// if the head is the last element in current block
 	// destroy this block and update the queue after pop it
-	if(iter == 39)
+	if(iter == BLOCK_LENGTH-4-1-1)
 	{// the last element
 		// change the next block to be the first block
 		for(int i = 0; i != 4; i ++)
@@ -334,9 +340,9 @@ unsigned char dequeue_byte(Q * q)
 			*(q+i) = data[address + i];
 		}
 		// update the iter
-		*(q+8) = 255;
+		*(q+8) = 0;
 		// release the block
-		clear(address, address + 44);
+		clear(address, address + BLOCK_LENGTH);
 	}else
 	{// not the last element
 		iter ++;
