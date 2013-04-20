@@ -8,15 +8,15 @@ using namespace std;
 //=============================================================
 //          district that store heads of each queues
 //          the heads store essential informations
-// ( let's set the maximum number of heads to be 17,
+// ( let's set the maximum number of heads to be 25,
 // ( so that this distric takes
-// ( 240 bytes
+// ( 250 bytes
 //=============================================================
 //          district that store datas of each queue
 // ( each block consume 44 bytes
-// ( this district can hold 42 blocks
+// ( this district can hold 40 blocks
 // ( up to 
-// ( 1848 bytes
+// ( 1798 bytes
 //=============================================================
 //*************************************************************
 //*************************************************************
@@ -26,7 +26,7 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                      DESIGN OF HEAD
-// 11 bytes
+// 10 bytes
 //=============================================================
 //=============================================================
 // first block index
@@ -46,23 +46,6 @@ using namespace std;
 // iterator index which point to the tail in the last block
 // iter_tail
 //=============================================================
-// ( size and capacity, 
-// ( if not not necessary, 
-// ( do not design this part
-//=============================================================
-// ( block initial length (a constant value)
-// ( the length when expand the queue to add a new block
-// ( however, while pop the head element, 
-// ( the length of the first block will decrease
-// ( length_0
-// ( length_1
-// ( length_2
-// ( length_3
-// ( .......................
-// ( let's set the block initial length to 45
-//=============================================================
-// 255
-//=============================================================
 //*************************************************************
 //*************************************************************
 //*************************************************************
@@ -71,15 +54,13 @@ using namespace std;
 //*************************************************************
 //=============================================================
 //                     DESIGN OF BLOCK
-// 45 bytes
-// 5 bytes for manage informations
+// 44 bytes
+// 4 bytes for manage informations
 // 40 bytes for datas
 //=============================================================
 // point to the index of next block first element address
 // next_0
 // next_1
-// next_2
-// next_3
 //=============================================================
 // remain datas
 // .......
@@ -87,7 +68,9 @@ using namespace std;
 // .......
 // not been used space will be marked as 'B'
 //=============================================================
-//255
+// point to the index of next block first element address
+// next_2
+// next_3
 //=============================================================
 
 
