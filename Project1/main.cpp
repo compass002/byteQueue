@@ -76,7 +76,8 @@ using namespace std;
 //=============================================================
 
 
-
+const int HEAD_DISTRICT_BOUNDARY = 264;
+const int THE_END_BOUNDARY = 2048;
 const int MARK_AS_USED = 255;
 const int ADDRESS_LENGTH = 4;
 const int ONE_LENGTH = 1;
@@ -157,11 +158,11 @@ int to_number(unsigned char (&numberB)[4], int &numberA)
 Q * create_queue()
 {
 	// search head district
-	int head = get_continuous_index(0,320,10);
+	int head = get_continuous_index(0,HEAD_DISTRICT_BOUNDARY,HEAD_LENGTH);
 	if(head != -1)
 	{
 		// search block district
-		int first_block = get_continuous_index(320,2048,44);
+		int first_block = get_continuous_index(HEAD_DISTRICT_BOUNDARY,THE_END_BOUNDARY,BLOCK_LENGTH);
 		if(first_block != -1)
 		{// able to initial a queue
 			// initial the head
@@ -177,11 +178,12 @@ Q * create_queue()
 			}
 			data[head + 8] = 0;
 			data[head + 9] = 0;
-			data[head + 10] = 255;
+			// mark the end
+			data[head + 10] = MARK_AS_USED;
 			// mark the block
-			for(int i = 0; i != 45; i ++)
+			for(int i = 0; i != BLOCK_LENGTH; i ++)
 			{
-				data[first_block + i] = 255;
+				data[first_block + i] = MARK_AS_USED;
 			}
 			// after initialization, return the head address
 			Q *pHead = &data[head];
@@ -223,7 +225,7 @@ void destroy_blocks(int address)
 	unsigned char address_next_array[4];
 	for(int i = 0; i != 4; i ++)
 	{
-		if(data[address + i] == 255)
+		if(data[address + i] == MARK_AS_USED)
 		{// next block not exist
 			is_next_exist = false;
 		}
@@ -235,7 +237,7 @@ void destroy_blocks(int address)
 		destroy_blocks(address_next);
 	}
 	// destroy this block
-	clear(address, address + 45);
+	clear(address, address + BLOCK_LENGTH);
 }
 // Destroy an earlier created byte queue. 
 void destroy_queue(Q * q)
@@ -249,19 +251,17 @@ void destroy_queue(Q * q)
 	int address = to_number(address_array);
 	destroy_blocks(address);
 	// destroy the head
-	clear(q,11);
+	clear(q, HEAD_LENGTH);
 }
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
 {
 	//check if the block is full
 	int iter = *(q+9);
-	/*if(iter == 255)
-		iter = 0;*/
-	if(iter == 40)
+	if(iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH)// should be 40
 	{// full
 		// check if there are space available for expand
-		int index = get_continuous_index(200,2048,44);
+		int index = get_continuous_index(HEAD_DISTRICT_BOUNDARY,THE_END_BOUNDARY,BLOCK_LENGTH);
 		if(index == -1)
 		{// no available space
 			// report
@@ -299,20 +299,18 @@ void enqueue_byte(Q * q, unsigned char b)
 		// add the element to the tail
 		// get the iter
 		int iter = *(q+9);
-		/*if(iter == 255)
-			iter = 0;*/
 		// get the last block address
 		unsigned char last_block_address[4];
 		for(int i = 0; i != 4; i ++)
 		{
-			last_block_address[i] = *(q + i + 4);
+			last_block_address[i] = *(q + i + ADDRESS_LENGTH);
 		}
 		int address = to_number(last_block_address);
 		// add the element to tail
-		data[address + 4 + iter] = b;
+		data[address + ADDRESS_LENGTH + iter] = b;
 		// update iter in head
 		iter ++;
-		*(q + 9) = iter;
+		*(q + ADDRESS_LENGTH*2 + ONE_LENGTH) = iter;
 	}
 }
 // Pops the next byte off the FIFO queue 
@@ -326,13 +324,11 @@ unsigned char dequeue_byte(Q * q)
 	}
 	int address = to_number(first_block_address);
 	// get the element
-	int iter = *(q+8);
-	/*if(iter == 255)
-		iter = 0;*/
-	unsigned char result = data[address + 4 + iter];
+	int iter = *(q + ADDRESS_LENGTH*2);
+	unsigned char result = data[address + ADDRESS_LENGTH + iter];
 	// if the head is the last element in current block
 	// destroy this block and update the queue after pop it
-	if(iter == BLOCK_LENGTH-4-1-1)
+	if(iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
 	{// the last element
 		// change the next block to be the first block
 		for(int i = 0; i != 4; i ++)
@@ -340,13 +336,13 @@ unsigned char dequeue_byte(Q * q)
 			*(q+i) = data[address + i];
 		}
 		// update the iter
-		*(q+8) = 0;
+		*(q+ ADDRESS_LENGTH*2) = 0;
 		// release the block
 		clear(address, address + BLOCK_LENGTH);
 	}else
 	{// not the last element
 		iter ++;
-		*(q+8) = iter;
+		*(q+ ADDRESS_LENGTH*2) = iter;
 	}
 	return result;
 }
