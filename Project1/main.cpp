@@ -261,7 +261,7 @@ void destroy_queue(Q * q)
 void enqueue_byte(Q * q, unsigned char b)
 {
 	//check if the block is full
-	int iter = *(q+9)
+	int iter = *(q+9);
 	if(iter == 40)
 	{// full
 		// check if there are space available for expand
@@ -295,7 +295,7 @@ void enqueue_byte(Q * q, unsigned char b)
 			for(int i = 0; i != 4; i ++)
 			{
 				data[address + i] = last_block_address[i];
-				(q + i + 4) = last_block_address[i];
+				*(q + i + 4) = last_block_address[i];
 			}
 		}
 	}else
