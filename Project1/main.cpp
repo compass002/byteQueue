@@ -301,8 +301,15 @@ void enqueue_byte(Q * q, unsigned char b)
 			}
 		}
 	}else
-	{
+	{// current block is not full
 		// add the element to the tail
+		// get the iter
+		int iter = *(q+8) * 10 + *(q+9);
+		// get the last block address
+		for(int i = 0; i != 4; i ++)
+		{
+
+		}
 	}
 }
 // Pops the next byte off the FIFO queue 
