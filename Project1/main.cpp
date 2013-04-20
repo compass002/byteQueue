@@ -41,9 +41,10 @@ using namespace std;
 // last_index_2
 // last_index_3
 //=============================================================
-// iterator index which point to the tail in the block
-// iter_0
-// iter_1
+// iterator index which point to the head in the first block
+// iter_head
+// iterator index which point to the tail in the last block
+// iter_tail
 //=============================================================
 // ( size and capacity, 
 // ( if not not necessary, 
@@ -323,6 +324,9 @@ void enqueue_byte(Q * q, unsigned char b)
 // Pops the next byte off the FIFO queue 
 unsigned char dequeue_byte(Q * q)
 {
+	// if the head is the last element in current block
+	// destroy this block and update the queue after pop it
+	
 }
 
 
