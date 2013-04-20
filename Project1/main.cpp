@@ -368,10 +368,12 @@ int main()
 	{
 		enqueue_byte(q90, i);
 	}
+	//destroy_queue(q90);
 	for(int i = 0; i != 90; i ++)
 	{
 		dequeue_byte(q90);
 	}
+	destroy_queue(q90);
 	/*Q *q0 = create_queue();
 	enqueue_byte(q0, 0);
 	enqueue_byte(q0, 1);
