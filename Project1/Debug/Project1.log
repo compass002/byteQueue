@@ -1,4 +1,4 @@
-﻿Build started 4/20/2013 3:02:38 PM.
+﻿Build started 4/20/2013 3:09:50 PM.
      1>Project "C:\Programming\CPlusPlus\2013Spring\Project1\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W4 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -7,59 +7,15 @@
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(142): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(143): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(144): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(199): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(201): error C2144: syntax error : 'void' should be preceded by ';'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(201): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(317): warning C4244: '=' : conversion from 'int' to 'Q', possible loss of data
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(349): warning C4244: '=' : conversion from 'int' to 'Q', possible loss of data
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(357): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(358): error C2146: syntax error : missing ';' before identifier 'enqueue_byte'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(358): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(359): error C2146: syntax error : missing ';' before identifier 'enqueue_byte'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(359): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(360): error C2146: syntax error : missing ';' before identifier 'Q'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(360): error C2065: 'q1' : undeclared identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(360): error C2275: 'Q' : illegal use of this type as an expression
-                 c:\programming\cplusplus\2013spring\project1\project1\main.cpp(93) : see declaration of 'Q'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(360): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(361): error C2146: syntax error : missing ';' before identifier 'enqueue_byte'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(361): error C2065: 'q1' : undeclared identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(361): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(362): error C2146: syntax error : missing ';' before identifier 'enqueue_byte'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(362): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(363): error C2146: syntax error : missing ';' before identifier 'enqueue_byte'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(363): error C2065: 'q1' : undeclared identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(363): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(364): error C2146: syntax error : missing ';' before identifier 'printf'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(364): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(365): error C2146: syntax error : missing ';' before identifier 'printf'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(365): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(366): error C2146: syntax error : missing ';' before identifier 'enqueue_byte'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(366): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(367): error C2146: syntax error : missing ';' before identifier 'enqueue_byte'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(367): error C2065: 'q1' : undeclared identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(367): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(368): error C2146: syntax error : missing ';' before identifier 'printf'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(368): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(369): error C2146: syntax error : missing ';' before identifier 'printf'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(369): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(370): error C2146: syntax error : missing ';' before identifier 'destroy_queue'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(370): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(371): error C2146: syntax error : missing ';' before identifier 'printf'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(371): error C2065: 'q1' : undeclared identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(371): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(372): error C2146: syntax error : missing ';' before identifier 'printf'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(372): error C2065: 'q1' : undeclared identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(372): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(373): error C2146: syntax error : missing ';' before identifier 'printf'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(373): error C2065: 'q1' : undeclared identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(373): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(374): error C2146: syntax error : missing ';' before identifier 'destroy_queue'
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(374): error C2065: 'q1' : undeclared identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(376): error C3872: '0xa0': this character is not allowed in an identifier
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(378): error C2146: syntax error : missing ';' before identifier 'system'
-     1>Done Building Project "C:\Programming\CPlusPlus\2013Spring\Project1\Project1\Project1.vcxproj" (Build target(s)) -- FAILED.
+     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(132): warning C4715: 'get_continuous_index' : not all control paths return a value
+     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(199): warning C4715: 'create_queue' : not all control paths return a value
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.lib" /MACHINE:X86 Debug\main.obj
+         Project1.vcxproj -> C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.exe
+     1>Done Building Project "C:\Programming\CPlusPlus\2013Spring\Project1\Project1\Project1.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.15
+Time Elapsed 00:00:03.96

@@ -191,12 +191,12 @@ Q * create_queue()
 				data[first_block + i] = 'B';
 			}
 			// after initialization, return the head address
-			unsigned char *pHead = &data[head];
+			Q *pHead = &data[head];
 			return pHead;
 		}
-	}
-	return 0;
-} 
+	}else
+		return 0;
+}
 // clear the memory from [begin,end)
 void clear(int begin, int end)
 {
@@ -354,26 +354,26 @@ unsigned char dequeue_byte(Q * q)
 
 int main()
 {
-	Q * q0 = create_queue(); 
-	enqueue_byte(q0, 0); 
-	enqueue_byte(q0, 1); 
-	Q * q1 = create_queue(); 
-	enqueue_byte(q1, 3); 
-	enqueue_byte(q0, 2); 
-	enqueue_byte(q1, 4); 
-	printf("%d", dequeue_byte(q0)); 
-	printf("%d\n", dequeue_byte(q0)); 
-	enqueue_byte(q0, 5); 
-	enqueue_byte(q1, 6); 
-	printf("%d", dequeue_byte(q0)); 
-	printf("%d\n", dequeue_byte(q0)); 
-	destroy_queue(q0); 
-	printf("%d", dequeue_byte(q1)); 
-	printf("%d", dequeue_byte(q1)); 
-	printf("%d\n", dequeue_byte(q1)); 
-	destroy_queue(q1); 
+	Q *q0 = create_queue();
+	enqueue_byte(q0, 0);
+	enqueue_byte(q0, 1);
+	Q * q1 = create_queue();
+	enqueue_byte(q1, 3);
+	enqueue_byte(q0, 2);
+	enqueue_byte(q1, 4);
+	printf("%d", dequeue_byte(q0));
+	printf("%d\n", dequeue_byte(q0));
+	enqueue_byte(q0, 5);
+	enqueue_byte(q1, 6);
+	printf("%d", dequeue_byte(q0));
+	printf("%d\n", dequeue_byte(q0));
+	destroy_queue(q0);
+	printf("%d", dequeue_byte(q1));
+	printf("%d", dequeue_byte(q1));
+	printf("%d\n", dequeue_byte(q1));
+	destroy_queue(q1);
 	// should be:
- 	// 0 1 2 5 3 4 6 
+	// 0 1 2 5 3 4 6 
 	//===================================
 	system("pause");
 	return 0;
