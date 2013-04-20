@@ -261,9 +261,7 @@ void destroy_queue(Q * q)
 void enqueue_byte(Q * q, unsigned char b)
 {
 	//check if the block is full
-	unsigned char first_number = *(q + 8);
-	unsigned char second_number = *(q + 9);
-	int iter = (first_nubmer - '0')*10 + (second_number - '0');
+	int iter = *(q+9)
 	if(iter == 40)
 	{// full
 		// check if there are space available for expand
@@ -280,8 +278,7 @@ void enqueue_byte(Q * q, unsigned char b)
 			// add the element to this block
 			data[index + 4] = b;
 			// update the iter
-			*(q+8) = '0';
-			*(q+9) = '0';
+			*(q+9) = 0;
 			// link the blocks
 			unsigned char address_array[4];
 			for(int i = 0; i != 4; i ++)
@@ -305,7 +302,7 @@ void enqueue_byte(Q * q, unsigned char b)
 	{// current block is not full
 		// add the element to the tail
 		// get the iter
-		int iter = *(q+8) * 10 + *(q+9);
+		int iter = *(q+9);
 		// get the last block address
 		unsigned char last_block_address[4];
 		for(int i = 0; i != 4; i ++)
@@ -314,11 +311,10 @@ void enqueue_byte(Q * q, unsigned char b)
 		}
 		int address = to_number(last_block_address);
 		// add the element to tail
-		data[address + 4 + iter + 1] = b;
+		data[address + 4 + iter] = b;
 		// update iter in head
 		iter ++;
-		*(q + 8) = iter/10 - '0';
-		*(q + 9) = iter - (int)(iter/10)*10 - '0';
+		*(q + 9) = iter;
 	}
 }
 // Pops the next byte off the FIFO queue 
