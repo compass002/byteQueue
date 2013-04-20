@@ -259,8 +259,8 @@ void destroy_queue(Q * q)
 void enqueue_byte(Q * q, unsigned char b)
 {
 	//check if the block is full
-	int iter = *(q+9);
-	if(iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH)// should be 40
+	int tail_iter = *(q + THE_TAIL_ITER);
+	if(tail_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH)// should be 40
 	{// full
 		// check if there are space available for expand
 		int index = get_continuous_index(HEAD_DISTRICT_BOUNDARY,THE_END_BOUNDARY,BLOCK_LENGTH);
@@ -299,8 +299,6 @@ void enqueue_byte(Q * q, unsigned char b)
 	}else
 	{// current block is not full
 		// add the element to the tail
-		// get the iter
-		int iter = *(q+9);
 		// get the last block address
 		unsigned char last_block_address[4];
 		for(int i = 0; i != 4; i ++)
@@ -309,10 +307,10 @@ void enqueue_byte(Q * q, unsigned char b)
 		}
 		int address = to_number(last_block_address);
 		// add the element to tail
-		data[address + ADDRESS_LENGTH + iter] = b;
+		data[address + ADDRESS_LENGTH + tail_iter] = b;
 		// update iter in head
-		iter ++;
-		*(q + ADDRESS_LENGTH*2 + ONE_LENGTH) = iter;
+		tail_iter ++;
+		*(q + ADDRESS_LENGTH*2 + ONE_LENGTH) = tail_iter;
 	}
 }
 // Pops the next byte off the FIFO queue 
