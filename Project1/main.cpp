@@ -324,11 +324,11 @@ unsigned char dequeue_byte(Q * q)
 	}
 	int address = to_number(first_block_address);
 	// get the element
-	int iter = *(q + ADDRESS_LENGTH*2);
-	unsigned char result = data[address + ADDRESS_LENGTH + iter];
+	int head_iter = *(q + THE_HEAD_ITER);
+	unsigned char result = data[address + ADDRESS_LENGTH + head_iter];
 	// if the head is the last element in current block
 	// destroy this block and update the queue after pop it
-	if(iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
+	if(head_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
 	{// the last element
 		// change the next block to be the first block
 		for(int i = 0; i != 4; i ++)
@@ -336,13 +336,13 @@ unsigned char dequeue_byte(Q * q)
 			*(q+i) = data[address + i];
 		}
 		// update the iter
-		*(q+ ADDRESS_LENGTH*2) = 0;
+		*(q+ THE_HEAD_ITER) = 0;
 		// release the block
 		clear(address, address + BLOCK_LENGTH);
 	}else
 	{// not the last element
-		iter ++;
-		*(q+ ADDRESS_LENGTH*2) = iter;
+		head_iter ++;
+		*(q+ ADDRESS_LENGTH*2) = head_iter;
 	}
 	return result;
 }
