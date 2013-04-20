@@ -183,8 +183,8 @@ Q * create_queue()
 			{
 				data[head + i + 4] = address[i];
 			}
-			data[head + 8] = 0;
-			data[head + 9] = 0;
+			data[head + 8] = 255;
+			data[head + 9] = 255;
 			// mark the block
 			for(int i = 0; i != 44; i ++)
 			{
@@ -263,6 +263,8 @@ void enqueue_byte(Q * q, unsigned char b)
 {
 	//check if the block is full
 	int iter = *(q+9);
+	if(iter == 255)
+		iter = 0;
 	if(iter == 40)
 	{// full
 		// check if there are space available for expand
@@ -279,7 +281,7 @@ void enqueue_byte(Q * q, unsigned char b)
 			// add the element to this block
 			data[index + 4] = b;
 			// update the iter
-			*(q+9) = 0;
+			*(q+9) = 255;
 			// link the blocks
 			unsigned char address_array[4];
 			for(int i = 0; i != 4; i ++)
@@ -304,6 +306,8 @@ void enqueue_byte(Q * q, unsigned char b)
 		// add the element to the tail
 		// get the iter
 		int iter = *(q+9);
+		if(iter == 255)
+			iter = 0;
 		// get the last block address
 		unsigned char last_block_address[4];
 		for(int i = 0; i != 4; i ++)
@@ -330,6 +334,8 @@ unsigned char dequeue_byte(Q * q)
 	int address = to_number(first_block_address);
 	// get the element
 	int iter = *(q+8);
+	if(iter == 255)
+		iter = 0;
 	unsigned char result = data[address + 4 + iter];
 	// if the head is the last element in current block
 	// destroy this block and update the queue after pop it
@@ -341,7 +347,7 @@ unsigned char dequeue_byte(Q * q)
 			*(q+i) = data[address + i];
 		}
 		// update the iter
-		*(q+8) = 0;
+		*(q+8) = 255;
 		// release the block
 		clear(address, address + 44);
 	}else
