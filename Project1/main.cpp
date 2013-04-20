@@ -287,7 +287,7 @@ void enqueue_byte(Q * q, unsigned char b)
 			// add the element to this block
 			data[index + 4] = b;
 			// update the iter
-			*(q+9) = 0;
+			*(q+9) = 1;
 			// link the blocks
 			unsigned char address_array[4];
 			for(int i = 0; i != 4; i ++)
