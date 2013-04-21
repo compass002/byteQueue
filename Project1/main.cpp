@@ -8,7 +8,7 @@ using namespace std;
 // 2048 bytes
 //=============================================================
 //          district that store heads of each queues
-//          the heads store essential informations
+//          the heads store management informations
 // ( let's set the maximum number of heads to be 30,
 // ( so that this distric takes
 // ( 330 bytes
@@ -79,16 +79,21 @@ using namespace std;
 
 const int HEAD_DISTRICT_BOUNDARY = 330;
 const int THE_END_BOUNDARY = 2048;
+
 const int MARK_AS_USED = 255;
 const int ADDRESS_LENGTH = 4;
 const int ONE_LENGTH = 1;
+
 const int HEAD_LENGTH = 11;// 4/4/1/1/1
 const int BLOCK_LENGTH = 45;// 4/40/1
 const int THE_HEAD_ITER = 8;
 const int THE_TAIL_ITER = 9;
+
 typedef unsigned char  Q;
+
 // the given memory
 unsigned char data[2048] = {'\0'};
+
 void on_out_of_memory()
 {
 	cerr<<"\nerror: not enough memory.\n";
@@ -290,10 +295,73 @@ void destroy_queue(Q * q)
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
 {
-	//check if the block is full
-	int tail_iter = *(q + THE_TAIL_ITER);
-	if(tail_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH)// should be 40
-	{// full
+	// check if the queue has blocks
+	bool is_block_exist = true;
+	for(int i = 0; i != 4; i ++)
+	{
+		if(*(q+i) == 255)
+			is_block_exist = false;
+	}
+	if(is_block_exist)
+	{
+		// check if the block is full
+		int tail_iter = *(q + THE_TAIL_ITER);
+		if(tail_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH)// should be 40
+		{// full
+			// check if there are space available for expand
+			int index = get_continuous_index(HEAD_DISTRICT_BOUNDARY,THE_END_BOUNDARY,BLOCK_LENGTH);
+			if(index == -1)
+			{// no available space
+				// report error
+				cerr<<"error: there is not enough memory to create a new block.";
+				on_out_of_memory();
+			}else
+			{// expand a new block
+				for(int i = 0; i != BLOCK_LENGTH; i ++)
+				{// mark the new block
+					data[index + i] = MARK_AS_USED;
+				}
+				// add the element to this block
+				data[index + 4] = b;
+				// update the iter
+				*(q+9) = 1;
+				// link the blocks
+				unsigned char address_array[4];
+				for(int i = 0; i != 4; i ++)
+				{
+					address_array[i] = *(q+i+4);
+				}
+				// get the previous last block's address
+				int address = to_number(address_array);
+				// convert the new block's address to array
+				unsigned char last_block_address[4];
+				to_array(index, last_block_address);
+				// update the previous last block
+				// update the last_block_index in the head
+				for(int i = 0; i != 4; i ++)
+				{
+					data[address + i] = last_block_address[i];
+					*(q + i + 4) = last_block_address[i];
+				}
+			}
+		}else
+		{// current block is not full
+			// add the element to the tail
+			// get the last block address
+			unsigned char last_block_address[4];
+			for(int i = 0; i != 4; i ++)
+			{
+				last_block_address[i] = *(q + i + ADDRESS_LENGTH);
+			}
+			int address = to_number(last_block_address);
+			// add the element to tail
+			data[address + ADDRESS_LENGTH + tail_iter] = b;
+			// update iter in head
+			tail_iter ++;
+			*(q + ADDRESS_LENGTH*2 + ONE_LENGTH) = tail_iter;
+		}
+	}else
+	{
 		// check if there are space available for expand
 		int index = get_continuous_index(HEAD_DISTRICT_BOUNDARY,THE_END_BOUNDARY,BLOCK_LENGTH);
 		if(index == -1)
@@ -310,41 +378,18 @@ void enqueue_byte(Q * q, unsigned char b)
 			// add the element to this block
 			data[index + 4] = b;
 			// update the iter
-			*(q+9) = 1;
-			// link the blocks
-			unsigned char address_array[4];
-			for(int i = 0; i != 4; i ++)
-			{
-				address_array[i] = *(q+i+4);
-			}
-			// get the previous last block's address
-			int address = to_number(address_array);
+			*(q+THE_HEAD_ITER) = 0;
+			*(q+THE_TAIL_ITER) = 1;
+			// update index
 			// convert the new block's address to array
-			unsigned char last_block_address[4];
-			to_array(index, last_block_address);
-			// update the previous last block
-			// update the last_block_index in the head
+			unsigned char block_address[4];
+			to_array(index, block_address);
 			for(int i = 0; i != 4; i ++)
 			{
-				data[address + i] = last_block_address[i];
-				*(q + i + 4) = last_block_address[i];
+				*(q + i) = block_address[i];
+				*(q + i + 4) = block_address[i];
 			}
 		}
-	}else
-	{// current block is not full
-		// add the element to the tail
-		// get the last block address
-		unsigned char last_block_address[4];
-		for(int i = 0; i != 4; i ++)
-		{
-			last_block_address[i] = *(q + i + ADDRESS_LENGTH);
-		}
-		int address = to_number(last_block_address);
-		// add the element to tail
-		data[address + ADDRESS_LENGTH + tail_iter] = b;
-		// update iter in head
-		tail_iter ++;
-		*(q + ADDRESS_LENGTH*2 + ONE_LENGTH) = tail_iter;
 	}
 }
 // Pops the next byte off the FIFO queue 
