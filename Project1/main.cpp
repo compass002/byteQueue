@@ -434,18 +434,23 @@ unsigned char dequeue_byte(Q * q)
 			// destroy this block and update the queue after pop it
 			if(head_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
 			{// the last element
+				// change the next block to be the first block
+				for(int i = 0; i != 4; i ++)
+				{
+					*(q+i) = data[address + i];
+				}
+				// update the iter
+				*(q + THE_HEAD_ITER) = 0;
+				// release the block
+				clear(address, address + BLOCK_LENGTH);
 			}else
-			{
+			{// not the last element
+				// release the element
+				data[address + ADDRESS_LENGTH + head_iter] = 255;
+				head_iter ++;
+				*(q+ THE_HEAD_ITER) = head_iter;
 			}
-			
-			
-			
-			
-			// change the next block to be the first block
-			for(int i = 0; i != 4; i ++)
-			{
-				*(q+i) = data[address + i];
-			}
+			return result;
 		}else
 		{// next block doest not exist, this is the last block
 			// check if this block is empty, in other words
@@ -460,6 +465,7 @@ unsigned char dequeue_byte(Q * q)
 
 
 
+
 			}else
 			{// not empty
 				// able to delete element
@@ -468,71 +474,26 @@ unsigned char dequeue_byte(Q * q)
 				// destroy this block and update the queue after pop it
 				if(head_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
 				{// the last element
+					for(int i = 0; i != 4; i ++)
+					{
+						*(q+i) = MARK_AS_USED;
+						*(q+i+ADDRESS_LENGTH) = MARK_AS_USED;
+					}
+					// update the iter
+					*(q + THE_HEAD_ITER) = 0;
+					*(q + THE_TAIL_ITER) = 0;
+					// release the block
+					clear(address, address + BLOCK_LENGTH);
 				}else
-				{
+				{// not the last element
+					// release the element
+					data[address + ADDRESS_LENGTH + head_iter] = 255;
+					head_iter ++;
+					*(q+ THE_HEAD_ITER) = head_iter;
 				}
-			}
-			
-			
-			
-			
-			
-			
-			
-			for(int i = 0; i != 4; i ++)
-			{
-				*(q+i) = MARK_AS_USED;
-				*(q+i+ADDRESS_LENGTH) = MARK_AS_USED;
-			}
+				return result;
+			}	
 		}
-
-
-
-
-
-
-		// get the element
-		int head_iter = *(q + THE_HEAD_ITER);
-		unsigned char result = data[address + ADDRESS_LENGTH + head_iter];
-		// if the head is the last element in current block
-		// destroy this block and update the queue after pop it
-		if(head_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
-		{// the last element
-			// check if next block exist
-			bool is_next_exist = true;
-			for(int i = 0; i != 4; i ++)
-			{
-				if(data[address + i] == 255)
-					is_next_exist = false;
-			}
-			if(is_next_exist)
-			{// next block exist
-				// change the next block to be the first block
-				for(int i = 0; i != 4; i ++)
-				{
-					*(q+i) = data[address + i];
-				}
-			}else
-			{// next block doest not exist
-				for(int i = 0; i != 4; i ++)
-				{
-					*(q+i) = MARK_AS_USED;
-					*(q+i+ADDRESS_LENGTH) = MARK_AS_USED;
-				}
-			}
-			// update the iter
-			*(q + THE_HEAD_ITER) = 0;
-			*(q + THE_TAIL_ITER) = 0;
-			// release the block
-			clear(address, address + BLOCK_LENGTH);
-		}else
-		{// not the last element
-			// release the element
-			data[address + ADDRESS_LENGTH + head_iter] = 255;
-			head_iter ++;
-			*(q+ THE_HEAD_ITER) = head_iter;
-		}
-		return result;
 	}else
 	{
 		cerr<<"error: this queue is empty.";
