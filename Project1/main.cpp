@@ -416,6 +416,81 @@ unsigned char dequeue_byte(Q * q)
 			first_block_address[i] = *(q+i);
 		}
 		int address = to_number(first_block_address);
+		// check if next block exist, in other words, 
+		// check if this block is the first block is the last block
+		bool is_next_exist = true;
+		for(int i = 0; i != 4; i ++)
+		{
+			if(data[address + i] == 255)
+				is_next_exist = false;
+		}
+		if(is_next_exist)
+		{// next block exist, so this is not the last block
+			// no doubt the queue is not empty
+			// able to delete element
+			int head_iter = *(q + THE_HEAD_ITER);
+			unsigned char result = data[address + ADDRESS_LENGTH + head_iter];
+			// if the head is the last element in current block
+			// destroy this block and update the queue after pop it
+			if(head_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
+			{// the last element
+			}else
+			{
+			}
+			
+			
+			
+			
+			// change the next block to be the first block
+			for(int i = 0; i != 4; i ++)
+			{
+				*(q+i) = data[address + i];
+			}
+		}else
+		{// next block doest not exist, this is the last block
+			// check if this block is empty, in other words
+			// head iter equals tail iter
+			int head_iter = *(q + THE_HEAD_ITER);
+			int tail_iter = *(q + THE_TAIL_ITER);
+			if(head_iter >= tail_iter)
+			{// this queue is empty or have errors
+				// can not delete element from a empty queue
+				cerr<<"\nerror: this queue is empty, can not delete element.";
+				on_illegal_operation();
+
+
+
+			}else
+			{// not empty
+				// able to delete element
+				unsigned char result = data[address + ADDRESS_LENGTH + head_iter];
+				// if the head is the last element in current block
+				// destroy this block and update the queue after pop it
+				if(head_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
+				{// the last element
+				}else
+				{
+				}
+			}
+			
+			
+			
+			
+			
+			
+			
+			for(int i = 0; i != 4; i ++)
+			{
+				*(q+i) = MARK_AS_USED;
+				*(q+i+ADDRESS_LENGTH) = MARK_AS_USED;
+			}
+		}
+
+
+
+
+
+
 		// get the element
 		int head_iter = *(q + THE_HEAD_ITER);
 		unsigned char result = data[address + ADDRESS_LENGTH + head_iter];
