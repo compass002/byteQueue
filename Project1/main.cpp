@@ -416,16 +416,17 @@ unsigned char dequeue_byte(Q * q)
 			first_block_address[i] = *(q+i);
 		}
 		int address = to_number(first_block_address);
-		// check if next block exist, in other words, 
 		// check if the first block is the last block
-		bool is_next_exist = true;
+		// this is different with check next block,
+		// because next block may be not the last block
+		int is_same = 0;
 		for(int i = 0; i != 4; i ++)
 		{
-			if(data[address + i] == 255)
-				is_next_exist = false;
+			if(*(q+i) == *(q+i+ADDRESS_LENGTH))
+				is_same ++;
 		}
-		if(is_next_exist)
-		{// next block exist, so this is not the last block
+		if(is_same != 4)
+		{// the first block is not the last block
 			// no doubt the queue is not empty
 			// able to delete element
 			int head_iter = *(q + THE_HEAD_ITER);
@@ -452,7 +453,7 @@ unsigned char dequeue_byte(Q * q)
 			}
 			return result;
 		}else
-		{// next block doest not exist, this is the last block
+		{// this is the last block also the first block, the only block
 			// check if this block is empty, in other words
 			// head iter equals tail iter
 			int head_iter = *(q + THE_HEAD_ITER);
@@ -510,13 +511,24 @@ int main()
 			enqueue_byte(q90, i);
 		}
 	}*/
-	for(int i = 0; i != 5; i ++)
+	for(int i = 0; i != 40; i ++)
 	{
 		enqueue_byte(q90,i);
 	}
-	
-	//destroy_queue(q90);
+	for(int i = 0; i != 40; i ++)
+	{
+		dequeue_byte(q90);
+	}
+	/*for(int i = 0; i != 10; i ++)
+	{
+		enqueue_byte(q90,i);
+	}*/
 	for(int i = 0; i != 5; i ++)
+	{
+		dequeue_byte(q90);
+	}
+	//destroy_queue(q90);
+	/*for(int i = 0; i != 5; i ++)
 	{
 		dequeue_byte(q90);
 	}
@@ -527,7 +539,7 @@ int main()
 	for(int i = 0; i != 455; i ++)
 	{
 		dequeue_byte(q90);
-	}
+	}*/
 	destroy_queue(q90);
 	/*Q *q0 = create_queue();
 	enqueue_byte(q0, 0);
