@@ -402,7 +402,7 @@ unsigned char dequeue_byte(Q * q)
 {
 	// check if block exist
 	bool is_block_exist = true;
-	for(int i = 0; i != 0; i ++)
+	for(int i = 0; i != 4; i ++)
 	{
 		if(*(q+i) == 255)
 			is_block_exist = false;
