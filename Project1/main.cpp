@@ -441,7 +441,8 @@ unsigned char dequeue_byte(Q * q)
 				}
 			}
 			// update the iter
-			*(q+ THE_HEAD_ITER) = 0;
+			*(q + THE_HEAD_ITER) = 0;
+			*(q + THE_TAIL_ITER) = 0;
 			// release the block
 			clear(address, address + BLOCK_LENGTH);
 		}else
