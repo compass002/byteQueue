@@ -503,30 +503,39 @@ unsigned char dequeue_byte(Q * q)
 
 int main()
 {
-	Q *q90 = create_queue();
-	/*for(int j = 0; j != (2048/255)+1; j ++)
+	Q *headers[40];
+	for(int i = 0; i != 40; i ++)
 	{
-		for(int i = 0; i != 256; i ++)
-		{
-			enqueue_byte(q90, i);
-		}
+		headers[i] = create_queue();
+	}
+	/*for(int i = 0; i != 30; i ++)
+	{
+		headers[i] = create_queue();
 	}*/
-	for(int i = 0; i != 5; i ++)
-	{
-		enqueue_byte(q90,i);
-	}
-	for(int i = 0; i != 5; i ++)
-	{
-		dequeue_byte(q90);
-	}
-	/*for(int i = 0; i != 10; i ++)
-	{
-		enqueue_byte(q90,i);
-	}*/
-	for(int i = 0; i != 5; i ++)
-	{
-		dequeue_byte(q90);
-	}
+	//Q *q90 = create_queue();
+	///*for(int j = 0; j != (2048/255)+1; j ++)
+	//{
+	//	for(int i = 0; i != 256; i ++)
+	//	{
+	//		enqueue_byte(q90, i);
+	//	}
+	//}*/
+	//for(int i = 0; i != 5; i ++)
+	//{
+	//	enqueue_byte(q90,i);
+	//}
+	//for(int i = 0; i != 5; i ++)
+	//{
+	//	dequeue_byte(q90);
+	//}
+	///*for(int i = 0; i != 10; i ++)
+	//{
+	//	enqueue_byte(q90,i);
+	//}*/
+	//for(int i = 0; i != 5; i ++)
+	//{
+	//	dequeue_byte(q90);
+	//}
 	//destroy_queue(q90);
 	/*for(int i = 0; i != 5; i ++)
 	{
@@ -540,7 +549,7 @@ int main()
 	{
 		dequeue_byte(q90);
 	}*/
-	destroy_queue(q90);
+	/*destroy_queue(q90);*/
 	/*Q *q0 = create_queue();
 	enqueue_byte(q0, 0);
 	enqueue_byte(q0, 1);
