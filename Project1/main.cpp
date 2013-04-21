@@ -360,14 +360,17 @@ unsigned char dequeue_byte(Q * q)
 			{
 				*(q+i) = data[address + i];
 			}
-
-			// update the iter
-			*(q+ THE_HEAD_ITER) = 0;
-			// release the block
-			clear(address, address + BLOCK_LENGTH);
 		}else
 		{// next block doest not exist
+			for(int i = 0; i != 4; i ++)
+			{
+				*(q+i) = MARK_AS_USED;
+			}
 		}
+		// update the iter
+		*(q+ THE_HEAD_ITER) = 0;
+		// release the block
+		clear(address, address + BLOCK_LENGTH);
 	}else
 	{// not the last element
 		// release the element
