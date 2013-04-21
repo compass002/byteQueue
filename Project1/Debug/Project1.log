@@ -1,4 +1,4 @@
-﻿Build started 4/21/2013 4:45:10 PM.
+﻿Build started 4/21/2013 5:45:06 PM.
      1>Project "C:\Programming\CPlusPlus\2013Spring\Project1\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W4 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -8,9 +8,10 @@
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(160): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(161): warning C4244: '=' : conversion from 'int' to 'unsigned char', possible loss of data
      1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(366): warning C4244: '=' : conversion from 'int' to 'Q', possible loss of data
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(458): warning C4244: '=' : conversion from 'int' to 'Q', possible loss of data
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(482): warning C4244: 'argument' : conversion from 'int' to 'unsigned char', possible loss of data
-     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(492): warning C4244: 'argument' : conversion from 'int' to 'unsigned char', possible loss of data
+     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(451): warning C4244: '=' : conversion from 'int' to 'Q', possible loss of data
+     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(489): warning C4244: '=' : conversion from 'int' to 'Q', possible loss of data
+     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(515): warning C4244: 'argument' : conversion from 'int' to 'unsigned char', possible loss of data
+     1>c:\programming\cplusplus\2013spring\project1\project1\main.cpp(525): warning C4244: 'argument' : conversion from 'int' to 'unsigned char', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.lib" /MACHINE:X86 Debug\main.obj
          Project1.vcxproj -> C:\Programming\CPlusPlus\2013Spring\Project1\Debug\Project1.exe
@@ -18,4 +19,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.13
+Time Elapsed 00:00:02.43

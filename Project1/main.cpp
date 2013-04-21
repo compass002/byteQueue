@@ -417,7 +417,7 @@ unsigned char dequeue_byte(Q * q)
 		}
 		int address = to_number(first_block_address);
 		// check if next block exist, in other words, 
-		// check if this block is the first block is the last block
+		// check if the first block is the last block
 		bool is_next_exist = true;
 		for(int i = 0; i != 4; i ++)
 		{
@@ -460,12 +460,9 @@ unsigned char dequeue_byte(Q * q)
 			if(head_iter >= tail_iter)
 			{// this queue is empty or have errors
 				// can not delete element from a empty queue
-				cerr<<"\nerror: this queue is empty, can not delete element.";
+				cerr<<"\nerror: this queue has block, but is empty, can not delete element.";
 				on_illegal_operation();
-
-
-
-
+				return 255;
 			}else
 			{// not empty
 				// able to delete element
@@ -496,7 +493,7 @@ unsigned char dequeue_byte(Q * q)
 		}
 	}else
 	{
-		cerr<<"error: this queue is empty.";
+		cerr<<"error: this queue is empty, blocks not exist.";
 		on_illegal_operation();
 		return 255;
 	}
