@@ -9,15 +9,15 @@ using namespace std;
 //=============================================================
 //          district that store heads of each queues
 //          the heads store essential informations
-// ( let's set the maximum number of heads to be 24,
+// ( let's set the maximum number of heads to be 30,
 // ( so that this distric takes
-// ( 264 bytes
+// ( 330 bytes
 //=============================================================
 //          district that store datas of each queue
 // ( each block consume 45 bytes
-// ( this district can hold 39 blocks
+// ( this district can hold 38 blocks
 // ( up to 
-// ( 1784 bytes
+// ( 1718 bytes
 //=============================================================
 //*************************************************************
 //*************************************************************
@@ -77,7 +77,7 @@ using namespace std;
 //=============================================================
 
 
-const int HEAD_DISTRICT_BOUNDARY = 264;
+const int HEAD_DISTRICT_BOUNDARY = 330;
 const int THE_END_BOUNDARY = 2048;
 const int MARK_AS_USED = 255;
 const int ADDRESS_LENGTH = 4;
@@ -89,7 +89,11 @@ const int THE_TAIL_ITER = 9;
 typedef unsigned char  Q;
 // the given memory
 unsigned char data[2048] = {'\0'};
-
+void on_out_of_memory()
+{
+	cerr<<"\nerror: not enough memory.\n";
+	throw("\nerror: not enough memory.\n");
+}
 void on_illegal_operation()
 {
 	cerr<<"error: illegal operation.";
@@ -199,9 +203,17 @@ Q * create_queue()
 			Q *pHead = &data[head];
 			return pHead;
 		}else
+		{
+			cerr<<"error: not enough memory to initial a block for a queue.";
+			on_out_of_memory();
 			return 0;
+		}
 	}else
+	{
+		cerr<<"error: not enough memory to initial a head for a queue.";
+		on_out_of_memory();
 		return 0;
+	}
 }
 // clear the memory from [begin,end)
 void clear(int begin, int end)
@@ -264,11 +276,7 @@ void destroy_queue(Q * q)
 	// destroy the head
 	clear(q, HEAD_LENGTH);
 }
-void on_out_of_memory()
-{
-	cerr<<"\nerror: not enough memory.\n";
-	throw("\nerror: not enough memory.\n");
-}
+
 // Adds a new byte to a queue. 
 void enqueue_byte(Q * q, unsigned char b)
 {
