@@ -274,8 +274,6 @@ void destroy_queue(Q * q)
 	}
 	if(is_block_exist)
 	{
-	}else
-	{
 		// destroy the blocks
 		unsigned char address_array[4];
 		for(int i = 0; i != 4; i ++)
