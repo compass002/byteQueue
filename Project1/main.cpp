@@ -383,6 +383,7 @@ unsigned char dequeue_byte(Q * q)
 			for(int i = 0; i != 4; i ++)
 			{
 				*(q+i) = MARK_AS_USED;
+				*(q+i+ADDRESS_LENGTH) = MARK_AS_USED;
 			}
 		}
 		// update the iter
