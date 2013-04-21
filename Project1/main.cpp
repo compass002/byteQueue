@@ -92,11 +92,11 @@ unsigned char data[2048] = {'\0'};
 void on_out_of_memory()
 {
 	cerr<<"\nerror: not enough memory.\n";
-	throw("\nerror: not enough memory.\n");
+	throw("error: not enough memory.");
 }
 void on_illegal_operation()
 {
-	cerr<<"error: illegal operation.";
+	cerr<<"\nerror: illegal operation.\n";
 	throw("error: illegal operation.");
 }
 // search continuous memory space in a given range [begin,end)
@@ -204,13 +204,13 @@ Q * create_queue()
 			return pHead;
 		}else
 		{
-			cerr<<"error: not enough memory to initial a block for a queue.";
+			cerr<<"\nerror: not enough memory to initial a block for a queue.\n";
 			on_out_of_memory();
 			return 0;
 		}
 	}else
 	{
-		cerr<<"error: not enough memory to initial a head for a queue.";
+		cerr<<"\nerror: not enough memory to initial a head for a queue.\n";
 		on_out_of_memory();
 		return 0;
 	}
@@ -265,14 +265,26 @@ void destroy_blocks(int address)
 // Destroy an earlier created byte queue. 
 void destroy_queue(Q * q)
 {
-	// destroy the blocks
-	unsigned char address_array[4];
+	// check if the queue has blocks
+	bool is_block_exist = true;
 	for(int i = 0; i != 4; i ++)
 	{
-		address_array[i] = *(q+i);
+		if(*(q+i) == 255)
+			is_block_exist = false;
 	}
-	int address = to_number(address_array);
-	destroy_blocks(address);
+	if(is_block_exist)
+	{
+	}else
+	{
+		// destroy the blocks
+		unsigned char address_array[4];
+		for(int i = 0; i != 4; i ++)
+		{
+			address_array[i] = *(q+i);
+		}
+		int address = to_number(address_array);
+		destroy_blocks(address);
+	}
 	// destroy the head
 	clear(q, HEAD_LENGTH);
 }
