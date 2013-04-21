@@ -511,11 +511,11 @@ int main()
 			enqueue_byte(q90, i);
 		}
 	}*/
-	for(int i = 0; i != 40; i ++)
+	for(int i = 0; i != 5; i ++)
 	{
 		enqueue_byte(q90,i);
 	}
-	for(int i = 0; i != 40; i ++)
+	for(int i = 0; i != 5; i ++)
 	{
 		dequeue_byte(q90);
 	}
