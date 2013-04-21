@@ -109,6 +109,7 @@ void on_illegal_operation()
 // return the address or -1 if fail
 int get_continuous_index(int begin, int end, int length)
 {
+	// check if the imput paraments are legal
 	int range = end - begin;
 	if( range <= 0 )
 	{
@@ -123,7 +124,8 @@ int get_continuous_index(int begin, int end, int length)
 			on_illegal_operation();
 			return -1;
 		}else
-		{
+		{// all the paraments are legal
+			// search if there is enough space
 			int count = 0;
 			for(int i = 0; i != range; i ++)
 			{
@@ -135,10 +137,13 @@ int get_continuous_index(int begin, int end, int length)
 					count = 0;
 				}
 				if(count == length)
-				{
+				{// there are enough space
 					return begin+i+1-count;
 				}
 			}
+			// the memory is not enough
+			cout<<"\n there is not enough space for such length.\n";
+			return -1;
 		}
 	}
 }
@@ -465,16 +470,28 @@ unsigned char dequeue_byte(Q * q)
 int main()
 {
 	Q *q90 = create_queue();
-	for(int j = 0; j != (2048/255)+1; j ++)
+	/*for(int j = 0; j != (2048/255)+1; j ++)
 	{
 		for(int i = 0; i != 256; i ++)
 		{
 			enqueue_byte(q90, i);
 		}
+	}*/
+	for(int i = 0; i != 5; i ++)
+	{
+		enqueue_byte(q90,i);
 	}
 	
 	//destroy_queue(q90);
-	for(int i = 0; i != 90; i ++)
+	for(int i = 0; i != 5; i ++)
+	{
+		dequeue_byte(q90);
+	}
+	for(int i = 0; i != 255; i ++)
+	{
+		enqueue_byte(q90,i);
+	}
+	for(int i = 0; i != 455; i ++)
 	{
 		dequeue_byte(q90);
 	}
