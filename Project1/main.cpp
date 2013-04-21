@@ -346,29 +346,28 @@ unsigned char dequeue_byte(Q * q)
 	// destroy this block and update the queue after pop it
 	if(head_iter == BLOCK_LENGTH - ADDRESS_LENGTH - ONE_LENGTH - 1)// should be 39
 	{// the last element
-		// is there next blocks
-		// get next block address
+		// check if next block exist
+		bool is_next_exist = true;
 		for(int i = 0; i != 4; i ++)
 		{
 			if(data[address + i] == 255)
-			{// next block does not exist
-				
-
-
-
-			}// 
+				is_next_exist = false;
 		}
+		if(is_next_exist)
+		{// next block exist
+			// change the next block to be the first block
+			for(int i = 0; i != 4; i ++)
+			{
+				*(q+i) = data[address + i];
+			}
 
-
-		// change the next block to be the first block
-		for(int i = 0; i != 4; i ++)
-		{
-			*(q+i) = data[address + i];
+			// update the iter
+			*(q+ THE_HEAD_ITER) = 0;
+			// release the block
+			clear(address, address + BLOCK_LENGTH);
+		}else
+		{// next block doest not exist
 		}
-		// update the iter
-		*(q+ THE_HEAD_ITER) = 0;
-		// release the block
-		clear(address, address + BLOCK_LENGTH);
 	}else
 	{// not the last element
 		// release the element
