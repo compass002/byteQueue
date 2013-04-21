@@ -313,7 +313,7 @@ void enqueue_byte(Q * q, unsigned char b)
 			if(index == -1)
 			{// no available space
 				// report error
-				cerr<<"error: there is not enough memory to create a new block.";
+				cerr<<"\nerror: there is not enough memory to create a new block.\n";
 				on_out_of_memory();
 			}else
 			{// expand a new block
@@ -465,10 +465,14 @@ unsigned char dequeue_byte(Q * q)
 int main()
 {
 	Q *q90 = create_queue();
-	for(int i = 0; i != 90; i ++)
+	for(int j = 0; j != (2048/255)+1; j ++)
 	{
-		enqueue_byte(q90, i);
+		for(int i = 0; i != 256; i ++)
+		{
+			enqueue_byte(q90, i);
+		}
 	}
+	
 	//destroy_queue(q90);
 	for(int i = 0; i != 90; i ++)
 	{
